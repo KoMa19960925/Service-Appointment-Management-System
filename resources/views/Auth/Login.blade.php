@@ -16,10 +16,10 @@
         <div class="col-md-5">
             <div class="card shadow border-0">
                 <div class="card-body p-4">
-                    <h3 class="text-center text-primary fw-bold mb-4">Login Form</h3>
+                    <h3 class="text-center text-dark fw-bold mb-4">Login Form</h3>
 
 
-                    <form action="{{ route('loginstore ') }}" method="POST">
+                    <form action="{{ route('loginstore') }}" method="POST">
                         @csrf
 
 
@@ -58,7 +58,7 @@
 
 
                         <p class="text-center mt-3 mb-0 text-secondary">Don't have an account?
-                            <a href="{{ route('register') }}"class="link-primary text-decoration-none fw-bold">Register</a>
+                            <a href="{{ route('registerpage') }}"class="link-primary text-decoration-none fw-bold">Register</a>
                         </p>
                     </form>
                 </div>

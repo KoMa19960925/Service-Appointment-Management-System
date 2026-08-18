@@ -48,7 +48,7 @@
                     
                     <div class="text-center">
                         <p class="m-0 text-secondary text-center">Have an account?
-                            <a href="{{ route('login') }}" class="link-primary text-decoration-none">Login</a>
+                            <a href="{{ route('loginpage') }}" class="link-primary text-decoration-none fw-bold">Login</a>
                         </p>
                         <button type="submit" class="btn btn-dark">Register</button>
                     </div>
