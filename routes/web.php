@@ -20,8 +20,15 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logoutpage');
 
 Route::middleware('auth')->group(function () {
 
-    Route::get('/customer/dashboard', [DashboardController::class, 'customerDashboard'])
-        ->middleware('role:customer')
-        ->name('customer.dashboard');
+    Route::get('/customer/dashboard',[DashboardController::class, 'customerDashboard'])->middleware('role:customer')->name('Customer.dashboard');
+    Route::get('/customer/services',[DashboardController::class, 'services'])->middleware('role:customer')->name('Customer.services');
+    Route::get('/customer/requests',[DashboardController::class, 'requests'])->middleware('role:customer')->name('Customer.requests');
+    Route::get('/customer/appointments',[DashboardController::class, 'appointments'])->middleware('role:customer')->name('Customer.appointments');
+    Route::get('/customer/history',[DashboardController::class, 'history'])->middleware('role:customer')->name('Customer.history');
+    Route::get('/customer/feedback',[DashboardController::class, 'feedback'])->middleware('role:customer')->name('Customer.feedback');
+    Route::get('/customer/request/create',[DashboardController::class, 'createRequest'])->middleware('role:customer')->name('Customer.request.create');
+    Route::post('/customer/request/store',[DashboardController::class, 'storeRequest'])->middleware('role:customer')->name('Customer.request.store');
 
 });
+
+

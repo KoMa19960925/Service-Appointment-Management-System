@@ -29,14 +29,12 @@ class Authcontroller extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'contactnumber' => 'required|string|max:20',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:8|confirmed',
         ]);
 
         User::create([
             'name' => $request->name,
-            'contactnumber' => $request->contactnumber,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role' => 'customer',
