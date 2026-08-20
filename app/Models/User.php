@@ -19,11 +19,17 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'role'
-    ];
+    'name',
+    'email',
+    'phone',
+    'work_experience',
+    'password',
+    'role',
+];
+    
+
+
+    
 
     /**
      * The attributes that should be hidden for serialization.
@@ -47,4 +53,13 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+
+
+    public function serviceRequests()
+{
+    return $this->hasMany(ServiceRequest::class);
+}
+
+
 }

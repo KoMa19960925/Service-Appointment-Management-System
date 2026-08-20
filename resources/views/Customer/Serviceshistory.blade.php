@@ -4,13 +4,13 @@
 
 <div class="d-flex" style="min-height: 100vh">
 
-    {{-- Sidebar --}}
+ 
     <nav class="d-flex flex-column flex-shrink-0 p-3 bg-dark"
          style="width: 260px">
 
         <ul class="nav nav-pills flex-column gap-2 mb-auto">
 
-            {{-- Dashboard --}}
+         
             <li class="nav-item">
                 <a href="{{ route('Customer.dashboard') }}"
                    class="nav-link {{ request()->routeIs('Customer.dashboard') ? 'active' : 'text-white' }}">
@@ -19,7 +19,7 @@
                 </a>
             </li>
 
-            {{-- Services --}}
+       
             <li class="nav-item">
                 <a href="{{ route('Customer.services') }}"
                    class="nav-link {{ request()->routeIs('Customer.services') ? 'active' : 'text-white' }}">
@@ -28,7 +28,7 @@
                 </a>
             </li>
 
-            {{-- My Requests --}}
+    
             <li class="nav-item">
                 <a href="{{ route('Customer.requests') }}"
                    class="nav-link {{ request()->routeIs('Customer.requests') ? 'active' : 'text-white' }}">
@@ -37,25 +37,25 @@
                 </a>
             </li>
 
-            {{-- Appointments --}}
+    
             <li class="nav-item">
-                <a href="{{ route('Customer.appointments') }}"
-                   class="nav-link {{ request()->routeIs('Customer.appointments') ? 'active' : 'text-white' }}">
+                <a href="{{ route('Customer.Technicianassigned') }}"
+                   class="nav-link {{ request()->routeIs('Customer.Technicianassigned') ? 'active' : 'text-white' }}">
                     <i class="bi bi-calendar-check me-2"></i>
-                    My Appointments
+                     Assigned Technician
                 </a>
             </li>
 
-            {{-- History --}}
+       
             <li class="nav-item">
-                <a href="{{ route('Customer.history') }}"
-                   class="nav-link {{ request()->routeIs('Customer.history') ? 'active' : 'text-white' }}">
+                <a href="{{ route('Customer.Servicehistory') }}"
+                   class="nav-link {{ request()->routeIs('Customer.Servicehistory') ? 'active' : 'text-white' }}">
                     <i class="bi bi-clock-history me-2"></i>
                     Service History
                 </a>
             </li>
 
-            {{-- Feedback --}}
+       
             <li class="nav-item">
                 <a href="{{ route('Customer.feedback') }}"
                    class="nav-link {{ request()->routeIs('Customer.feedback') ? 'active' : 'text-white' }}">
@@ -68,7 +68,7 @@
 
         <hr class="text-white">
 
-        {{-- Customer --}}
+     
         <div class="text-white mb-3">
 
             <div class="d-flex align-items-center">
@@ -91,7 +91,7 @@
 
         </div>
 
-        {{-- Logout --}}
+
         <form action="{{ route('logoutpage') }}" method="POST">
 
             @csrf
@@ -108,12 +108,11 @@
     </nav>
 
 
-    {{-- Main Content --}}
     <main class="flex-grow-1 p-4 bg-light">
 
         <div class="container-fluid">
 
-            {{-- Header --}}
+         
             <div class="mb-4">
 
                 <h2 class="fw-bold">
@@ -127,7 +126,6 @@
             </div>
 
 
-            {{-- History Table --}}
             <div class="card border-0 shadow-sm">
 
                 <div class="card-body">

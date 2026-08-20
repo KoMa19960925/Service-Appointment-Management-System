@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="d-flex" style="min-height: 160vh">
+    <div class="d-flex" style="min-height: 100vh">
         <nav class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 260px" data-bs-theme="dark">
             <ul class="nav nav-pills flex-column mb-auto">
 
@@ -19,22 +19,24 @@
                     Services
                 </a>
 
-
+                
+            <li class="nav-item">
                 <a href="{{ route('Customer.requests') }}"
-                    class="nav-link {{ request()->routeIs('Customer.requests') ? 'active' : 'text-white' }}">
+                   class="nav-link {{ request()->routeIs('Customer.requests') ? 'active' : 'text-white' }}">
                     <i class="bi bi-clipboard-check me-2"></i>
                     My Requests
                 </a>
+            </li>
 
 
-                <a href="{{ route('Customer.appointments') }}"
+                <a href="{{ route('Customer.Technicianassigned') }}"
                     class="nav-link {{ request()->routeIs('Customer.appointments') ? 'active' : 'text-white' }}">
                     <i class="bi bi-calendar-check me-2"></i>
-                    My Appointments
+                   Assigned Technician
                 </a>
 
 
-                <a href="{{ route('Customer.history') }}"
+                <a href="{{ route('Customer.Servicehistory') }}"
                     class="nav-link {{ request()->routeIs('Customer.history') ? 'active' : 'text-white' }}">
                     <i class="bi bi-clock-history me-2"></i>
                     Service History

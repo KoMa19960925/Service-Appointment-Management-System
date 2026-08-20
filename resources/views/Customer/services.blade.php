@@ -24,30 +24,30 @@
                     </a>
                 </li>
 
+                
+            <li class="nav-item">
+                <a href="{{ route('Customer.requests') }}"
+                   class="nav-link {{ request()->routeIs('Customer.requests') ? 'active' : 'text-white' }}">
+                    <i class="bi bi-clipboard-check me-2"></i>
+                    My Requests
+                </a>
+            </li>
+
 
                 <li class="nav-item">
-                    <a href="{{ route('Customer.requests') }}"
-                        class="nav-link {{ request()->routeIs('Customer.requests') ? 'active' : 'text-white' }}">
-                        <i class="bi bi-clipboard-check me-2"></i>
-                        My Requests
-                    </a>
-                </li>
-
-
-                <li class="nav-item">
-                    <a href="{{ route('Customer.appointments') }}"
-                        class="nav-link {{ request()->routeIs('Customer.appointments') ? 'active' : 'text-white' }}">
+                    <a href="{{ route('Customer.Technicianassigned') }}"
+                        class="nav-link {{ request()->routeIs('Customer.Technicianassigned') ? 'active' : 'text-white' }}">
 
                         <i class="bi bi-calendar-check me-2"></i>
-                        My Appointments
+                         Assigned Technician
 
                     </a>
                 </li>
 
 
                 <li class="nav-item">
-                    <a href="{{ route('Customer.history') }}"
-                        class="nav-link {{ request()->routeIs('Customer.history') ? 'active' : 'text-white' }}">
+                    <a href="{{ route('Customer.Servicehistory') }}"
+                        class="nav-link {{ request()->routeIs('Customer.Servicehistory') ? 'active' : 'text-white' }}">
                         <i class="bi bi-clock-history me-2"></i>
                         Service History
                     </a>
@@ -109,13 +109,11 @@
                                     maintenance services.
                                 </p>
                                 <a href="{{ route('Customer.request.create', ['service' => 'Computer & IT Support Service']) }}"
-                                    class="btn btn-secondary">
-                                    <i class="bi bi-clipboard-plus me-1"></i>Request Service
+                                    class="btn btn-secondary">Request Service
                                 </a>
                             </div>
                         </div>
                     </div>
-
 
 
 

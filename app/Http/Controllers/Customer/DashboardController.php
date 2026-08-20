@@ -17,27 +17,27 @@ class DashboardController extends Controller
         return view('Customer.services');
     }
 
-
+    
     public function requests()
     {
-        return view('Customer.requests');
+        return view('Customer.Myrequests');
     }
 
 
-    public function appointments()
+    public function Technicianassigned()
     {
-        return view('Customer.appointments');
+        return view('Customer.Assignedtechnician');
     }
 
 
-    public function history()
+    public function Servicehistory()
     {
-        return view('Customer.history');
+        return view('Customer.Serviceshistory');
     }
 
     
     public function feedback()
     {
-        return view('Customer.feedback');
+        return view('Customer.Feedback');
     }
 }

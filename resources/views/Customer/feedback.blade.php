@@ -37,17 +37,17 @@
 
 
             <li class="nav-item">
-                <a href="{{ route('Customer.appointments') }}"
-                   class="nav-link {{ request()->routeIs('Customer.appointments') ? 'active' : 'text-white' }}">
+                <a href="{{ route('Customer.Technicianassigned') }}"
+                   class="nav-link {{ request()->routeIs('Customer.Technicianassigned') ? 'active' : 'text-white' }}">
                     <i class="bi bi-calendar-check me-2"></i>
-                    My Appointments
+                  Assigned Technician
                 </a>
             </li>
 
 
             <li class="nav-item">
-                <a href="{{ route('Customer.history') }}"
-                   class="nav-link {{ request()->routeIs('Customer.history') ? 'active' : 'text-white' }}">
+                <a href="{{ route('Customer.Servicehistory') }}"
+                   class="nav-link {{ request()->routeIs('Customer.Servicehistory') ? 'active' : 'text-white' }}">
                     <i class="bi bi-clock-history me-2"></i>
                     Service History
                 </a>

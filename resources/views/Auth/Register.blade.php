@@ -12,7 +12,7 @@
 
                     <div class="mb-3">
                         <label class="form-label">Name:</label>
-                        <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+                        <input type="text" class="form-control" name="name">
                         @error('name')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -21,7 +21,7 @@
 
                     <div class="mb-3">
                         <label class="form-label">Email:</label>
-                        <input type="text" class="form-control" name="email" value="{{ old('email') }}">
+                        <input type="text" class="form-control" name="email">
                         @error('email')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
