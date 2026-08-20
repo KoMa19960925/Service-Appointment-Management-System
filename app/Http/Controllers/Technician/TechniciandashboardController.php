@@ -12,3 +12,5 @@ class TechniciandashboardController extends Controller
         return view('Technician.Dashboard');
     }
 }
+
+
