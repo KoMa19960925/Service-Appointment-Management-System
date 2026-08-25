@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdmindashboardController;
+use App\Http\Controllers\Admin\AssignedtechnicianController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Customer\DashboardController;
 use App\Http\Controllers\Customer\ServicerequController;
@@ -47,12 +48,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/technician-assigned',[AdmindashboardController::class, 'Technicianassigned'])->middleware('role:admin')->name('Admin.TechnicianAssigned');
     Route::get('/admin/service-history',[AdmindashboardController::class, 'Servicehistory'])->middleware('role:admin')->name('Admin.Servicehistory');
     Route::get('/admin/customer-feedback',[AdmindashboardController::class, 'Customerfeedback'])->middleware('role:admin')->name('Admin.Customerfeedback');
+    
+    
     Route::post('/admin/technician/store',[AdmindashboardController::class, 'storeTechnician'])->middleware('role:admin')->name('Admin.technician.store');
     Route::get('/admin/technician/create',[AdmindashboardController::class, 'createtechnician'])->middleware('role:admin')->name('Admin.createtechnician');
+    Route::get('/admin/technician/Createtechnicianassigned',[AssignedtechnicianController::class, 'Createtechnicianassigned'])->middleware('role:admin')->name('Admin.Createtechnicianassigned');
+    Route::get('/admin/technician-assigned',[AssignedtechnicianController::class, 'TechnicianAssigned'])->middleware('role:admin')->name('Admin.TechnicianAssigned');
+    Route::post('/admin/technician-assigned/{id}',[AssignedtechnicianController::class, 'assignTechnician'])->middleware('role:admin')->name('Admin.assignTechnician');
+    Route::put( '/admin/technician-assigned/status/{id}',[AssignedtechnicianController::class, 'updateStatus'])->middleware('role:admin')->name('Admin.updateTechnicianStatus');
 
 
 
     Route::get('/Technician/dashboard',[TechniciandashboardController::class, 'TechnicianDashboard'])->middleware('role:technician')->name('Technician.dashboard');
+          
 
 
 

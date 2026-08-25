@@ -279,19 +279,11 @@
                                         <td colspan="6"
                                             class="text-center py-5">
 
-                                            <i class="bi bi-person-x fs-1 text-muted"></i>
+                                     
 
                                             <h6 class="mt-3 text-muted">
                                                 No technicians found.
                                             </h6>
-
-                                            <a href="{{ route('Admin.createtechnician') }}"
-                                               class="btn btn-primary btn-sm mt-2">
-
-                                                <i class="bi bi-person-plus me-1"></i>
-                                                Add Technician
-
-                                            </a>
 
                                         </td>
 

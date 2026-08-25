@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-
 class ServiceRequest extends Model
 {
     protected $fillable = [
@@ -19,5 +18,13 @@ class ServiceRequest extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function assignedTechnician()
+    {
+        return $this->hasOne(
+            Assignedtechnician::class,
+            'service_request_id'
+        );
     }
 }

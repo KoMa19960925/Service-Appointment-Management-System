@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\TechnicianCreateMail;
 use App\Models\ServiceRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class AdmindashboardController extends Controller
 {
@@ -40,7 +42,7 @@ class AdmindashboardController extends Controller
         ]);
 
 
-       User::create([
+       $user= User::create([
             'name' => $request->name,
             'phone' => $request->phone,
             'work_experience' => $request->work_experience,
@@ -49,7 +51,7 @@ class AdmindashboardController extends Controller
             'role' => 'technician',
         ]);
 
-
+        Mail::to($user->email)->send(new TechnicianCreateMail($user));
         return redirect()->route('Admin.Techniciandetails')->with('success', 'Technician created successfully.');
     }
 

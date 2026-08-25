@@ -62,12 +62,15 @@
 
         <hr class="text-white">
 
+        {{-- Admin Profile --}}
         <div class="text-white mb-3">
+
             <div class="d-flex align-items-center">
 
                 <i class="bi bi-person-circle fs-4 me-2"></i>
 
                 <div>
+
                     <strong>
                         {{ Auth::user()->name }}
                     </strong>
@@ -75,18 +78,28 @@
                     <small class="d-block text-secondary">
                         Admin
                     </small>
+
                 </div>
 
             </div>
+
         </div>
 
+
+        {{-- Logout --}}
         <form action="{{ route('logoutpage') }}" method="POST">
+
             @csrf
 
-            <button type="submit" class="btn btn-danger w-100">
+            <button type="submit"
+                    class="btn btn-danger w-100">
+
                 <i class="bi bi-box-arrow-right me-2"></i>
+
                 Logout
+
             </button>
+
         </form>
 
     </nav>
@@ -97,170 +110,302 @@
 
         <div class="container-fluid">
 
+            {{-- Heading --}}
             <div class="mb-4">
 
                 <h2 class="fw-bold">
-                    Create Technician
+                    Technician Assigned
                 </h2>
 
                 <p class="text-muted">
-                    Add a new technician to the system.
+                    Assign technicians to customer service requests.
                 </p>
 
             </div>
 
 
-            <div class="row justify-content-center">
+            {{-- Success --}}
+            @if(session('success'))
 
-                <div class="col-md-8">
+                <div class="alert alert-success alert-dismissible fade show">
 
-                    <div class="card border-0 shadow-sm">
+                    {{ session('success') }}
 
-                        <div class="card-header bg-dark text-white p-3">
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="alert">
+                    </button>
 
-                            <h5 class="mb-0">
-                                
-                                Technician Details
-                            </h5>
+                </div>
 
-                        </div>
-
-
-                        <div class="card-body p-4">
-
-                            <form action="{{ route('Admin.technician.store') }}"
-                                  method="POST">
-
-                                @csrf
+            @endif
 
 
-                                {{-- Technician Name --}}
-                                <div class="mb-3">
+            {{-- Error --}}
+            @if(session('error'))
 
-                                    <label class="form-label fw-semibold">
-                                        Technician Name
-                                    </label>
+                <div class="alert alert-danger alert-dismissible fade show">
 
-                                    <input type="text"
-                                           name="name"
-                                           class="form-control"
-                                           value="{{ old('name') }}"
-                                           placeholder="Enter technician name">
+                    {{ session('error') }}
 
-                                    @error('name')
-                                        <span class="text-danger">
-                                            {{ $message }}
-                                        </span>
-                                    @enderror
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="alert">
+                    </button>
 
-                                </div>
+                </div>
+
+            @endif
 
 
-                                {{-- Email --}}
-                                <div class="mb-3">
+            {{-- Validation Errors --}}
+            @if($errors->any())
 
-                                    <label class="form-label fw-semibold">
-                                        Email
-                                    </label>
+                <div class="alert alert-danger">
 
-                                    <input type="email"
-                                           name="email"
-                                           class="form-control"
-                                           value="{{ old('email') }}"
-                                           placeholder="Enter technician email">
+                    <ul class="mb-0">
 
-                                    @error('email')
-                                        <span class="text-danger">
-                                            {{ $message }}
-                                        </span>
-                                    @enderror
+                        @foreach($errors->all() as $error)
 
-                                </div>
+                            <li>{{ $error }}</li>
+
+                        @endforeach
+
+                    </ul>
+
+                </div>
+
+            @endif
 
 
-                                {{-- Phone --}}
-                                <div class="mb-3">
+            {{-- Service Requests --}}
+            <div class="card border-0 shadow-sm">
 
-                                    <label class="form-label fw-semibold">
-                                        Phone Number
-                                    </label>
+                <div class="card-body">
 
-                                    <input type="text"
-                                           name="phone"
-                                           class="form-control"
-                                           value="{{ old('phone') }}"
-                                           placeholder="Enter phone number">
+                    <div class="table-responsive">
 
-                                    @error('phone')
-                                        <span class="text-danger">
-                                            {{ $message }}
-                                        </span>
-                                    @enderror
+                        <table class="table table-hover align-middle">
 
-                                </div>
+                            <thead class="table-dark">
 
+                                <tr>
 
-                                {{-- Password --}}
-                                <div class="mb-3">
+                                    <th>#</th>
 
-                                    <label class="form-label fw-semibold">
-                                        Password
-                                    </label>
+                                    <th>Customer Name</th>
 
-                                    <input type="password"
-                                           name="password"
-                                           class="form-control"
-                                           placeholder="Enter password">
+                                    <th>Service Name</th>
 
-                                    @error('password')
-                                        <span class="text-danger">
-                                            {{ $message }}
-                                        </span>
-                                    @enderror
+                                    <th>Description</th>
 
-                                </div>
+                                    <th>Technician</th>
+
+                                    <th>Date</th>
+
+                                    <th>Time</th>
+
+                                    <th>Status</th>
+
+                                </tr>
+
+                            </thead>
 
 
-                                {{-- Confirm Password --}}
-                                <div class="mb-3">
+                            <tbody>
 
-                                    <label class="form-label fw-semibold">
-                                        Confirm Password
-                                    </label>
+                                @forelse($servicerequests as $servicerequest)
 
-                                    <input type="password"
-                                           name="password_confirmation"
-                                           class="form-control"
-                                           placeholder="Confirm password">
+                                    <tr>
 
-                                </div>
+                                        {{-- ID --}}
+                                        <td>
+                                            {{ $servicerequest->id }}
+                                        </td>
 
 
-                                {{-- Buttons --}}
-                                <div class="d-flex justify-content-between mt-4">
-
-                                    <a href="{{ route('Admin.Techniciandetails') }}"
-                                       class="btn btn-secondary">
-
-                                        <i class="bi bi-arrow-left me-1"></i>
-                                        Cancel
-
-                                    </a>
+                                        {{-- Customer --}}
+                                        <td>
+                                            <strong>
+                                                {{ $servicerequest->name }}
+                                            </strong>
+                                        </td>
 
 
-                                    <button type="submit"
-                                            class="btn btn-primary">
+                                        {{-- Service --}}
+                                        <td>
+                                            {{ $servicerequest->service_name }}
+                                        </td>
 
-                                        <i class="bi bi-person-plus me-1"></i>
-                                        Create Technician
 
-                                    </button>
+                                        {{-- Description --}}
+                                        <td>
+                                            {{ $servicerequest->description }}
+                                        </td>
 
-                                </div>
 
-                            </form>
+                                        {{-- Technician --}}
+                                        <td>
 
-                        </div>
+                                            @if($servicerequest->assignedTechnician)
+
+                                                <strong>
+                                                    {{ $servicerequest->assignedTechnician->technician->name }}
+                                                </strong>
+
+                                            @else
+
+                                                <form
+                                                    action="{{ route(
+                                                        'Admin.assignTechnician',
+                                                        $servicerequest->id
+                                                    ) }}"
+                                                    method="POST">
+
+                                                    @csrf
+
+                                                    <div class="d-flex gap-2">
+
+                                                        <select
+                                                            name="technician_id"
+                                                            class="form-select form-select-sm"
+                                                            required>
+
+                                                            <option value="">
+                                                                Select Technician
+                                                            </option>
+
+                                                            @foreach($technicians as $technician)
+
+                                                                <option value="{{ $technician->id }}">
+                                                                    {{ $technician->name }}
+                                                                </option>
+
+                                                            @endforeach
+
+                                                        </select>
+
+
+                                                        <button
+                                                            type="submit"
+                                                            class="btn btn-sm btn-primary">
+
+                                                            <i class="bi bi-person-check"></i>
+                                                            Assign
+
+                                                        </button>
+
+                                                    </div>
+
+                                                </form>
+
+                                            @endif
+
+                                        </td>
+
+                                        {{-- Date --}}
+                                        <td>
+                                            {{ $servicerequest->request_date }}
+                                        </td>
+
+
+                                        {{-- Time --}}
+                                        <td>
+                                            {{ $servicerequest->request_time }}
+                                        </td>
+
+
+
+                                        {{-- Status --}}
+                                        <td>
+
+                                            @if($servicerequest->assignedTechnician)
+
+                                                @if(
+                                                    $servicerequest
+                                                        ->assignedTechnician
+                                                        ->status === 'Completed'
+                                                )
+
+                                                    <span class="badge bg-success">
+                                                        Completed
+                                                    </span>
+
+                                                @else
+
+                                                    <form
+                                                        action="{{ route(
+                                                            'Admin.updateTechnicianStatus',
+                                                            $servicerequest->assignedTechnician->id
+                                                        ) }}"
+                                                        method="POST">
+
+                                                        @csrf
+                                                        @method('PUT')
+
+                                                        <select
+                                                            name="status"
+                                                            class="form-select form-select-sm"
+                                                            onchange="this.form.submit()">
+
+                                                            <option
+                                                                value="Scheduled"
+                                                                selected>
+
+                                                                Scheduled
+
+                                                            </option>
+
+                                                            <option
+                                                                value="Completed">
+
+                                                                Completed
+
+                                                            </option>
+
+                                                        </select>
+
+                                                    </form>
+
+                                                @endif
+
+                                            @else
+
+                                                <span class="badge bg-warning text-dark">
+                                                    Pending
+                                                </span>
+
+                                            @endif
+
+                                        </td>
+
+                                    </tr>
+
+
+                                @empty
+
+                                    <tr>
+
+                                        <td colspan="8"
+                                            class="text-center py-5">
+
+                                            <i class="bi bi-inbox fs-1 text-muted"></i>
+
+                                            <p class="text-muted mb-0 mt-2">
+
+                                                No customer service requests found.
+
+                                            </p>
+
+                                        </td>
+
+                                    </tr>
+
+                                @endforelse
+
+                            </tbody>
+
+                        </table>
 
                     </div>
 
@@ -275,3 +420,4 @@
 </div>
 
 @endsection
+   
