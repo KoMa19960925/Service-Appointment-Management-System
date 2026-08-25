@@ -1,423 +1,295 @@
-@extends('layouts.app')
+@extends('layouts.Adminapp')
 
 @section('content')
 
-<div class="d-flex" style="min-height: 100vh">
-
-    {{-- Sidebar --}}
-    <nav class="d-flex flex-column flex-shrink-0 p-3 bg-dark"
-         style="width: 300px">
-
-        <ul class="nav nav-pills flex-column gap-2 mb-auto">
-
-            <li class="nav-item">
-                <a href="{{ route('Admin.dashboard') }}"
-                   class="nav-link {{ request()->routeIs('Admin.dashboard') ? 'active' : 'text-white' }}">
-                    <i class="bi bi-speedometer2 me-2"></i>
-                    Dashboard
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a href="{{ route('Admin.Techniciandetails') }}"
-                   class="nav-link {{ request()->routeIs('Admin.Techniciandetails') ? 'active' : 'text-white' }}">
-                    <i class="bi bi-wrench-adjustable me-2"></i>
-                    Full Technician Details
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a href="{{ route('Admin.Customerservicerequests') }}"
-                   class="nav-link {{ request()->routeIs('Admin.Customerservicerequests') ? 'active' : 'text-white' }}">
-                    <i class="bi bi-clipboard-check me-2"></i>
-                    Customer Requests
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a href="{{ route('Admin.TechnicianAssigned') }}"
-                   class="nav-link {{ request()->routeIs('Admin.TechnicianAssigned') ? 'active' : 'text-white' }}">
-                    <i class="bi bi-calendar-check me-2"></i>
-                    Technician Assigned
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a href="{{ route('Admin.Servicehistory') }}"
-                   class="nav-link {{ request()->routeIs('Admin.Servicehistory') ? 'active' : 'text-white' }}">
-                    <i class="bi bi-clock-history me-2"></i>
-                    All Service History
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a href="{{ route('Admin.Customerfeedback') }}"
-                   class="nav-link {{ request()->routeIs('Admin.Customerfeedback') ? 'active' : 'text-white' }}">
-                    <i class="bi bi-star me-2"></i>
-                    Customer Feedback
-                </a>
-            </li>
-
-        </ul>
-
-        <hr class="text-white">
-
-        {{-- Admin Profile --}}
-        <div class="text-white mb-3">
-
-            <div class="d-flex align-items-center">
-
-                <i class="bi bi-person-circle fs-4 me-2"></i>
-
-                <div>
-
-                    <strong>
-                        {{ Auth::user()->name }}
-                    </strong>
-
-                    <small class="d-block text-secondary">
-                        Admin
-                    </small>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        {{-- Logout --}}
-        <form action="{{ route('logoutpage') }}" method="POST">
-
-            @csrf
-
-            <button type="submit"
-                    class="btn btn-danger w-100">
-
-                <i class="bi bi-box-arrow-right me-2"></i>
-
-                Logout
-
-            </button>
-
-        </form>
-
-    </nav>
-
-
-    {{-- Main Content --}}
     <main class="flex-grow-1 p-4 bg-light">
-
         <div class="container-fluid">
-
-            {{-- Heading --}}
             <div class="mb-4">
-
-                <h2 class="fw-bold">
-                    Technician Assigned
-                </h2>
-
-                <p class="text-muted">
-                    Assign technicians to customer service requests.
-                </p>
-
+                <h2 class="fw-bold">Technician Assigned</h2>
             </div>
 
 
-            {{-- Success --}}
-            @if(session('success'))
-
-                <div class="alert alert-success alert-dismissible fade show">
-
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="bi bi-check-circle me-2"></i>
                     {{ session('success') }}
-
-                    <button type="button"
-                            class="btn-close"
-                            data-bs-dismiss="alert">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert">
                     </button>
-
                 </div>
-
             @endif
 
 
-            {{-- Error --}}
-            @if(session('error'))
-
-                <div class="alert alert-danger alert-dismissible fade show">
-
+            @if (session('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="bi bi-exclamation-triangle me-2"></i>
                     {{ session('error') }}
-
-                    <button type="button"
-                            class="btn-close"
-                            data-bs-dismiss="alert">
+                    <button type="button" class="btn-close" data-bs-dismiss="alert">
                     </button>
-
                 </div>
-
             @endif
 
 
-            {{-- Validation Errors --}}
-            @if($errors->any())
-
+            @if ($errors->any())
                 <div class="alert alert-danger">
+                    <strong>Please fix the following errors:</strong>
 
-                    <ul class="mb-0">
-
-                        @foreach($errors->all() as $error)
-
+                    <ul class="mb-0 mt-2">
+                        @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
-
                         @endforeach
-
                     </ul>
-
                 </div>
-
             @endif
 
 
-            {{-- Service Requests --}}
             <div class="card border-0 shadow-sm">
-
                 <div class="card-body">
-
                     <div class="table-responsive">
-
                         <table class="table table-hover align-middle">
-
                             <thead class="table-dark">
-
                                 <tr>
-
                                     <th>#</th>
-
                                     <th>Customer Name</th>
-
                                     <th>Service Name</th>
-
                                     <th>Description</th>
-
+                                    <th>Customer Request Date</th>
+                                    <th>Customer Request Time</th>
                                     <th>Technician</th>
-
-                                    <th>Date</th>
-
-                                    <th>Time</th>
-
+                                    <th>Assignment Date</th>
+                                    <th>Assignment Time</th>
+                                    <th>Work Proof</th>
                                     <th>Status</th>
-
                                 </tr>
-
                             </thead>
-
-
                             <tbody>
 
                                 @forelse($servicerequests as $servicerequest)
+                                    @php
+                                        $assignment = $servicerequest->assignedTechnician;
+                                        $imagesUploaded =
+                                            $assignment && !empty($assignment->image_1) && !empty($assignment->image_2);
+                                    @endphp
 
                                     <tr>
-
-                                        {{-- ID --}}
                                         <td>
-                                            {{ $servicerequest->id }}
+                                            <strong>{{ $servicerequest->id }}</strong>
                                         </td>
 
-
-                                        {{-- Customer --}}
                                         <td>
-                                            <strong>
-                                                {{ $servicerequest->name }}
-                                            </strong>
+                                            <strong>{{ $servicerequest->name }}</strong>
                                         </td>
 
-
-                                        {{-- Service --}}
-                                        <td>
+                                        <td style="min-width: 180px;">
                                             {{ $servicerequest->service_name }}
                                         </td>
 
-
-                                        {{-- Description --}}
-                                        <td>
+                                        <td style="min-width: 220px;">
                                             {{ $servicerequest->description }}
                                         </td>
 
-
-                                        {{-- Technician --}}
                                         <td>
 
-                                            @if($servicerequest->assignedTechnician)
+                                            @if ($servicerequest->request_date)
+                                                <span class="badge bg-secondary">
 
-                                                <strong>
-                                                    {{ $servicerequest->assignedTechnician->technician->name }}
-                                                </strong>
+                                                    <i class="bi bi-calendar me-1"></i>
 
+                                                    {{ $servicerequest->request_date }}
+
+                                                </span>
                                             @else
+                                                <span class="text-muted">-</span>
+                                            @endif
 
-                                                <form
-                                                    action="{{ route(
-                                                        'Admin.assignTechnician',
-                                                        $servicerequest->id
-                                                    ) }}"
+                                        </td>
+
+
+
+                                        <td>
+                                            @if ($servicerequest->request_time)
+                                                <span class="badge bg-secondary">
+
+                                                    <i class="bi bi-clock me-1"></i>
+
+                                                    {{ $servicerequest->request_time }}
+
+                                                </span>
+                                            @else
+                                                <span class="text-muted">-</span>
+                                            @endif
+
+                                        </td>
+
+
+
+                                        <td style="min-width: 230px;">
+                                            @if ($assignment)
+                                                <div class="d-flex align-items-center mb-2">
+                                                    <i class="bi bi-person-check-fill text-success fs-4 me-2"></i>
+                                                    <div>
+                                                        <strong>
+                                                            {{ $assignment->technician->name }}
+                                                        </strong>
+                                                    </div>
+                                                </div>
+
+
+                                                @if ($assignment->status !== 'Completed')
+                                                    <form
+                                                        action="{{ route('Admin.removeTechnician', $assignment->id) }}"method="POST"
+                                                        onsubmit="return confirm('Are you sure you want to remove this technician? You can assign another technician after removing.');">
+
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-outline-danger btn-sm w-100">
+                                                            <i class="bi bi-person-x me-1"></i>Change Technician
+                                                        </button>
+                                                    </form>
+                                                @endif
+                                            @else
+                                                <form action="{{ route('Admin.assignTechnician', $servicerequest->id) }}"
                                                     method="POST">
 
                                                     @csrf
+                                                    <label class="small fw-semibold mb-1">Select Technician</label>
+                                                    <select name="technician_id" class="form-select form-select-sm mb-2">
+                                                        <option value="">Select Technician</option>
 
-                                                    <div class="d-flex gap-2">
-
-                                                        <select
-                                                            name="technician_id"
-                                                            class="form-select form-select-sm"
-                                                            required>
-
-                                                            <option value="">
-                                                                Select Technician
+                                                        @foreach ($technicians as $technician)
+                                                            <option value="{{ $technician->id }}">
+                                                                {{ $technician->name }}
                                                             </option>
-
-                                                            @foreach($technicians as $technician)
-
-                                                                <option value="{{ $technician->id }}">
-                                                                    {{ $technician->name }}
-                                                                </option>
-
-                                                            @endforeach
-
-                                                        </select>
+                                                        @endforeach
+                                                    </select>
 
 
-                                                        <button
-                                                            type="submit"
-                                                            class="btn btn-sm btn-primary">
+                                                    <label class="small fw-semibold mb-1">Assignment Date</label>
+                                                    <input type="date" name="assigned_date"
+                                                        class="form-control form-control-sm mb-2" min="{{ date('Y-m-d') }}"
+                                                        required>
 
-                                                            <i class="bi bi-person-check"></i>
-                                                            Assign
+                                                    <label class="small fw-semibold mb-1">Assignment Time</label>
+                                                    <input type="time" name="assigned_time"
+                                                        class="form-control form-control-sm mb-2" required>
+                                                    <button type="submit" class="btn btn-primary btn-sm w-100">
+                                                        <i class="bi bi-person-check me-1"></i>
+                                                        Assign Technician
+                                                    </button>
+                                                </form>
+                                            @endif
+                                        </td>
 
-                                                        </button>
+                                        <td>
+                                            @if ($assignment)
+                                                <span class="badge bg-primary">
+                                                    <i class="bi bi-calendar-check me-1"></i>
+                                                    {{ $assignment->assigned_date }}
+                                                </span>
+                                            @else
+                                                <span class="text-muted">
+                                                    Not Assigned
+                                                </span>
+                                            @endif
+                                        </td>
+
+
+                                        <td>
+                                            @if ($assignment)
+                                                <span class="badge bg-primary">
+                                                    <i class="bi bi-clock me-1"></i>
+                                                    {{ $assignment->assigned_time }}
+                                                </span>
+                                            @else
+                                                <span class="text-muted">
+                                                    Not Assigned
+                                                </span>
+                                            @endif
+                                        </td>
+
+
+                                        <td style="min-width: 220px;">
+                                            @if ($assignment)
+                                                @if ($imagesUploaded)
+                                                    <div class="d-flex gap-2 flex-wrap">
+                                                        <a href="{{ asset('storage/' . $assignment->image_1) }}"
+                                                            target="_blank" class="btn btn-sm btn-warning">
+                                                            <i class="bi bi-image me-1"></i>Image 1
+                                                        </a>
+
+
+                                                        <a href="{{ asset('storage/' . $assignment->image_2) }}"
+                                                            target="_blank" class="btn btn-sm btn-warning">
+                                                            <i class="bi bi-image me-1"></i>Image 2
+                                                        </a>
 
                                                     </div>
+                                                    <small class="text-success d-block mt-2">
+                                                        Completed work images uploaded
+                                                    </small>
+                                                @else
+                                                    <div class="border rounded p-3 text-center bg-light">
 
-                                                </form>
+                                                        <i class="bi bi-images fs-3 text-muted"></i>
 
+                                                        <div class="small text-muted mt-1">
+                                                            Completed work images
+                                                        </div>
+
+                                                    </div>
+                                                @endif
+                                            @else
+                                                <span class="text-muted">
+                                                    Not Assigned
+                                                </span>
                                             @endif
 
                                         </td>
 
-                                        {{-- Date --}}
-                                        <td>
-                                            {{ $servicerequest->request_date }}
-                                        </td>
 
 
-                                        {{-- Time --}}
-                                        <td>
-                                            {{ $servicerequest->request_time }}
-                                        </td>
-
-
-
-                                        {{-- Status --}}
-                                        <td>
-
-                                            @if($servicerequest->assignedTechnician)
-
-                                                @if(
-                                                    $servicerequest
-                                                        ->assignedTechnician
-                                                        ->status === 'Completed'
-                                                )
-
+                                        <td style="min-width: 190px;">
+                                            @if ($assignment)
+                                                @if ($assignment->status === 'Completed')
                                                     <span class="badge bg-success">
+                                                        <i class="bi bi-check-circle me-1"></i>
                                                         Completed
                                                     </span>
-
+                                                @elseif($assignment->status === 'Scheduled')
+                                                    <span class="badge bg-primary">
+                                                        <i class="bi bi-clock me-1"></i>Scheduled
+                                                    </span>
+                                                @elseif($assignment->status === 'Pending')
+                                                    <span class="badge bg-warning text-dark">
+                                                        <i class="bi bi-hourglass-split me-1"></i>Pending
+                                                    </span>
                                                 @else
-
-                                                    <form
-                                                        action="{{ route(
-                                                            'Admin.updateTechnicianStatus',
-                                                            $servicerequest->assignedTechnician->id
-                                                        ) }}"
-                                                        method="POST">
-
-                                                        @csrf
-                                                        @method('PUT')
-
-                                                        <select
-                                                            name="status"
-                                                            class="form-select form-select-sm"
-                                                            onchange="this.form.submit()">
-
-                                                            <option
-                                                                value="Scheduled"
-                                                                selected>
-
-                                                                Scheduled
-
-                                                            </option>
-
-                                                            <option
-                                                                value="Completed">
-
-                                                                Completed
-
-                                                            </option>
-
-                                                        </select>
-
-                                                    </form>
-
+                                                    <span class="badge bg-secondary">
+                                                        {{ $assignment->status }}
+                                                    </span>
                                                 @endif
-
                                             @else
-
                                                 <span class="badge bg-warning text-dark">
-                                                    Pending
+                                                    <i class="bi bi-hourglass-split me-1"></i>Pending
                                                 </span>
-
                                             @endif
-
                                         </td>
-
                                     </tr>
-
-
                                 @empty
 
+
                                     <tr>
-
-                                        <td colspan="8"
-                                            class="text-center py-5">
-
-                                            <i class="bi bi-inbox fs-1 text-muted"></i>
-
-                                            <p class="text-muted mb-0 mt-2">
-
-                                                No customer service requests found.
-
-                                            </p>
-
+                                        <td colspan="11" class="text-center py-5">
+                                            <i class="bi bi-clipboard-x fs-1 text-muted"></i>
+                                            <h5 class="text-muted mt-3">No customer service requests found</h5>
                                         </td>
-
                                     </tr>
-
                                 @endforelse
-
                             </tbody>
-
                         </table>
-
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
     </main>
 
-</div>
-
 @endsection
-   

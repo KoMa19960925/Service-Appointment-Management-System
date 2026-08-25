@@ -20,11 +20,11 @@ class ServiceRequest extends Model
         return $this->belongsTo(User::class);
     }
 
+
     public function assignedTechnician()
     {
-        return $this->hasOne(
-            Assignedtechnician::class,
-            'service_request_id'
-        );
+        return $this->hasOne(Assignedtechnician::class,'service_request_id');
     }
+
+    
 }

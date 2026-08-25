@@ -1,99 +1,132 @@
-@extends('layouts.app')
+@extends('layouts.Adminapp')
 
 @section('content')
-    <div class="d-flex" style="min-height: 100vh">
-        <nav class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 250px" data-bs-theme="dark">
-            <ul class="nav nav-pills flex-column mb-auto">
+    <main class="flex-grow-1 p-4 bg-light">
+        <div class="container-fluid">
+            <div class="mb-4">
+                <h2 class="fw-bold mb-1">Admin Dashboard</h2>
+
+                <p class="text-muted mb-0">
+                    Welcome back, {{ Auth::user()->name }}
+                </p>
+            </div>
 
 
-                <a href="{{ route('Admin.dashboard') }}"
-                    class="nav-link {{ request()->routeIs('Admin.dashboard') ? 'active' : 'text-white' }}">
-                    <i class="bi bi-speedometer2 me-2"></i>
-                    Dashboard
-                </a>
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body p-4">
+                    <div class="row align-items-center">
+
+                        <div class="col-lg-7">
+                            <div class="d-flex align-items-start">
+                                <div class="bg-primary bg-opacity-10 rounded-3 d-flex align-items-center justify-content-center flex-shrink-0 me-3"
+                                    style="width: 65px; height: 65px;">
+                                    <i class="bi bi-speedometer2 text-primary fs-2"></i>
+                                </div>
+                                <div>
+                                    <h4 class="fw-bold mb-2">Welcome to Service & Appointment Management System</h4>
+                                    <p class="text-muted mb-0">Manage customer service requests,
+                                        technician assignments, completed
+                                        services, technician payments and
+                                        customer feedback from the admin
+                                        dashboard.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
 
 
-                <a href="{{ route('Admin.Techniciandetails') }}"
-                    class="nav-link {{ request()->routeIs('Admin.Techniciandetails') ? 'active' : 'text-white' }}">
-                   <i class="bi bi-person-plus me-2"></i>
-                    Full Technician Details
-                </a>
-
-
-                <a href="{{ route('Admin.Customerservicerequests') }}"
-                    class="nav-link {{ request()->routeIs('Admin.CustomerRequests') ? 'active' : 'text-white' }}">
-                    <i class="bi bi-clipboard-check me-2"></i>
-                   Customer Requests
-                </a>
-
-
-                <a href="{{ route('Admin.TechnicianAssigned') }}"
-                    class="nav-link {{ request()->routeIs('Admin.TechnicianAssigned') ? 'active' : 'text-white' }}">
-                    <i class="bi bi-calendar-check me-2"></i>
-                    Technician Assigned
-                </a>
-
-
-                <a href="{{ route('Admin.Servicehistory') }}"
-                    class="nav-link {{ request()->routeIs('Admin.Servicehistory') ? 'active' : 'text-white' }}">
-                    <i class="bi bi-clock-history me-2"></i>
-                    All Service History
-                </a>
-
-
-                <a href="{{ route('Admin.Customerfeedback') }}"
-                    class="nav-link {{ request()->routeIs('Admin.Customerfeedback') ? 'active' : 'text-white' }}">
-                    <i class="bi bi-star me-2"></i>
-                    Customer Feedback
-                </a>
-
-
-            </ul>
-            <hr>
-
-            <div class="mb-3 text-white">
-                <div class="d-flex align-items-center">
-                    <i class="bi bi-person-circle me-2 fs-4"></i>
-                    <div>
-                        <strong>
-                            {{ Auth::user()->name }}
-                        </strong>
-                        <small class="d-block text-secondary">Admin</small>
+                        <div class="col-lg-5 text-center mt-4 mt-lg-0">
+                            <img src="https://aexsoftware.com/hubfs/AI-Generated%20Media/Images/photographic%20The%20image%20depicts%20a%20modern%20digital%20workspace%20filled%20with%20vibrant%20screens%20displaying%20various%20dashboards%20and%20analytics%20related%20to%20field%20ser-1.png"
+                                alt="Service Management" class="img-fluid w-100 rounded-3"
+                                style="height: 280px; object-fit: cover;">
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <form action="{{ route('logoutpage') }}" method="POST">
-                @csrf
-                <button type="submit"class="btn btn-danger w-100"><i class="bi bi-box-arrow-right me-2"></i>Logout</button>
-            </form>
 
-        </nav>
-
-
-
-        <main class="flex-grow-1 p-4 bg-light">
-            <div class="container-fluid">
-
-                <div class="mb-4">
-                    <h2 class="fw-bold">Admin Dashboard</h2>
-                    <p class="text-muted">
-                        Welcome back, {{ Auth::user()->name }}
-                    </p>
-                </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center">
+                                <div class="bg-primary bg-opacity-10 rounded-3 d-flex
+                                            align-items-center
+                                            justify-content-center me-3"
+                                    style="width: 65px; height: 65px;">
+                                    <i class="bi bi-clipboard-check-fill text-primary fs-2"></i>
+                                </div>
 
 
-                <div class="card border-0 shadow-sm mt-4">
-                    <div class="card-body p-4">
-                        <h4 class="fw-bold">Welcome to Service & Appointment Management System</h4>
-                        <p class="text-muted mb-0">
-                            Browse available services, submit service requests,
-                            manage your appointments, and view your service history.
-                        </p>
+                                <div>
+                                    <h6 class="text-muted mb-1">
+                                        Total Customer Requests
+                                    </h6>
+                                    <h2 class="fw-bold mb-0">
+                                        {{ $totalCustomerRequests }}
+                                    </h2>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
+
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center">
+                                <div class="bg-success bg-opacity-10 rounded-3 d-flex align-items-center justify-content-center me-3"
+                                    style="width: 65px; height: 65px;">
+                                    <i class="bi bi-check-circle-fill text-success fs-2"></i>
+                                </div>
+
+
+
+                                <div>
+                                    <h6 class="text-muted mb-1">
+                                        Completed Services
+                                    </h6>
+                                    <h2 class="fw-bold mb-0">
+                                        {{ $completedServices }}
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center">
+                                <div class="bg-warning bg-opacity-10 rounded-3 d-flex align-items-center justify-content-center me-3"
+                                    style="width: 65px; height: 65px;">
+                                    <i class="bi bi-star-fill text-warning fs-2"></i>
+                                </div>
+
+                                <div>
+                                    <h6 class="text-muted mb-1">Total Customer Feedback</h6>
+                                    <h2 class="fw-bold mb-0">{{ $totalCustomerFeedback }}</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </main>
+
+
+            <div class="card border-0 shadow-sm mt-4 mb-4">
+                <div class="card-body p-0">
+                    <img src="{{ asset('images/Admin.jpg') }}" alt="Service Management" class="img-fluid w-100 rounded-3"
+                        style="height: 500px; object-fit: cover;">
+                </div>
+            </div>
+        </div>
+    </main>
     </div>
+
+    {{-- @include('components.footer') --}}
 @endsection

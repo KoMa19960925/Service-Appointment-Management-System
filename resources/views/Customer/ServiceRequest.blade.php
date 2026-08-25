@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.Customerapp')
 
 @section('content')
     <div class="container py-5">
@@ -7,12 +7,11 @@
                 <div class="card border-0 shadow">
 
 
-                    <div class="card-header bg-dark text-white p-3">
+                    <div class="card-header bg-dark text-light p-3">
                         <h4 class="mb-0">
                             Create Service Request
                         </h4>
                     </div>
-
 
 
                     <div class="card-body p-4">
@@ -20,18 +19,13 @@
                             @csrf
 
 
-
-
                             <div class="mb-3">
                                 <label class="form-label fw-semibold">
                                     Customer Name
                                 </label>
 
-                                <input type="text"
-                                       name="name"
-                                       class="form-control"
-                                       value="{{ Auth::user()->name }}"
-                                       readonly>
+                                <input type="text" name="name" class="form-control" value="{{ Auth::user()->name }}"
+                                    readonly>
 
                                 @error('name')
                                     <span class="text-danger">
@@ -49,6 +43,7 @@
                                 </label>
                                 <input type="text" name="service_name" class="form-control"
                                     value="{{ $service }}"readonly>
+
                                 @error('service_name')
                                     <span class="text-danger">
                                         {{ $message }}
@@ -79,6 +74,7 @@
                                 </label>
                                 <input type="date" name="request_date" class="form-control"
                                     value="{{ old('request_date') }}" min="{{ date('Y-m-d') }}">
+
                                 @error('request_date')
                                     <span class="text-danger">
                                         {{ $message }}
@@ -94,6 +90,7 @@
                                 </label>
                                 <input type="time" name="request_time" class="form-control"
                                     value="{{ old('request_time') }}">
+                                    
                                 @error('request_time')
                                     <span class="text-danger">
                                         {{ $message }}
@@ -110,7 +107,8 @@
                                 </a>
 
 
-                                <button type="submit" class="btn btn-primary">
+
+                                <button type="submit" class="btn btn-dark">
                                     <i class="bi bi-send me-2"></i>
                                     Submit Request
                                 </button>

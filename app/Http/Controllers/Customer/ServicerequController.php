@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Customer;
 
 use App\Http\Controllers\Controller;
 use App\Models\ServiceRequest;
+use App\Models\Assignedtechnician;
 use Illuminate\Http\Request;
 
 class ServicerequController extends Controller
@@ -11,7 +12,6 @@ class ServicerequController extends Controller
     public function createRequest(Request $request)
     {
         $service = $request->service;
-
         return view(
             'Customer.ServiceRequest',
             compact('service')
@@ -38,21 +38,13 @@ class ServicerequController extends Controller
             'request_time' => $request->request_time,
         ]);
 
-        return redirect()
-            ->route('Customer.requests')
-            ->with('success', 'Service Request Submitted Successfully.');
+        return redirect()->route('Customer.requests')->with('success', 'Service Request Submitted Successfully.');
     }
 
 
     public function requests()
     {
-        $servicerequests = ServiceRequest::where(
-            'user_id',
-            auth()->id()
-        )
-        ->latest()
-        ->get();
-
+        $servicerequests = ServiceRequest::where('user_id', auth()->id())->get();
         return view(
             'Customer.Myrequests',
             compact('servicerequests')
@@ -60,9 +52,27 @@ class ServicerequController extends Controller
     }
 
 
+
+
+    public function Technicianassigned()
+    {
+        $assignedtechnicians = Assignedtechnician::whereHas(
+            'serviceRequest',
+            function ($query) {
+                $query->where('user_id', auth()->id());
+            }
+        )->with(['serviceRequest', 'technician'])->get();
+
+        return view(
+            'Customer.Assignedtechnician',
+            compact('assignedtechnicians')
+        );
+    }
+
+
     public function editRequest($id)
     {
-        $servicerequest = ServiceRequest::findOrFail($id);
+        $servicerequest = ServiceRequest::where('user_id', auth()->id())->findOrFail($id);
 
         return view(
             'Customer.EditRequest',
@@ -79,7 +89,7 @@ class ServicerequController extends Controller
             'request_time' => 'required',
         ]);
 
-        $servicerequest = ServiceRequest::findOrFail($id);
+        $servicerequest = ServiceRequest::where('user_id', auth()->id())->findOrFail($id);
 
         $servicerequest->update([
             'description' => $request->description,
@@ -95,18 +105,8 @@ class ServicerequController extends Controller
 
     public function deleteRequest($id)
     {
-        $servicerequest = ServiceRequest::findOrFail($id);
-
+        $servicerequest = ServiceRequest::where('user_id', auth()->id())->findOrFail($id);
         $servicerequest->delete();
-
-        return redirect()
-            ->route('Customer.requests')
-            ->with('success', 'Service Request Deleted Successfully.');
+        return redirect()->route('Customer.requests')->with('success', 'Service Request Deleted Successfully.');
     }
 }
-
-
-
-
-
-

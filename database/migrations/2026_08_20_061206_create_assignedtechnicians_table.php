@@ -11,17 +11,11 @@ return new class extends Migration
         Schema::create('assignedtechnicians', function (Blueprint $table) {
 
             $table->id();
-
-            $table->foreignId('service_request_id')
-                ->constrained('service_requests')
-                ->onDelete('cascade');
-
-            $table->foreignId('technician_id')
-                ->constrained('users')
-                ->onDelete('cascade');
-
+            $table->foreignId('service_request_id')->constrained('service_requests')->cascadeOnDelete();
+            $table->foreignId('technician_id')->constrained('users')->cascadeOnDelete();
+            $table->date('assigned_date');
+            $table->time('assigned_time');
             $table->string('status')->default('Scheduled');
-
             $table->timestamps();
         });
     }

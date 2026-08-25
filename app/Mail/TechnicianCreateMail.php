@@ -41,7 +41,7 @@ class TechnicianCreateMail extends Mailable
      public function content(): Content
     {
         return new Content(
-            view: 'mails.Create_technician',
+            view: 'mail.Create_technician',
         );
     }
 

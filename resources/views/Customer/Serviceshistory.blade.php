@@ -1,273 +1,185 @@
-@extends('layouts.app')
+@extends('layouts.Customerapp')
 
 @section('content')
-
-<div class="d-flex" style="min-height: 100vh">
-
- 
-    <nav class="d-flex flex-column flex-shrink-0 p-3 bg-dark"
-         style="width: 260px">
-
-        <ul class="nav nav-pills flex-column gap-2 mb-auto">
-
-         
-            <li class="nav-item">
-                <a href="{{ route('Customer.dashboard') }}"
-                   class="nav-link {{ request()->routeIs('Customer.dashboard') ? 'active' : 'text-white' }}">
-                    <i class="bi bi-speedometer2 me-2"></i>
-                    Dashboard
-                </a>
-            </li>
-
-       
-            <li class="nav-item">
-                <a href="{{ route('Customer.services') }}"
-                   class="nav-link {{ request()->routeIs('Customer.services') ? 'active' : 'text-white' }}">
-                    <i class="bi bi-wrench-adjustable me-2"></i>
-                    Services
-                </a>
-            </li>
-
-    
-            <li class="nav-item">
-                <a href="{{ route('Customer.requests') }}"
-                   class="nav-link {{ request()->routeIs('Customer.requests') ? 'active' : 'text-white' }}">
-                    <i class="bi bi-clipboard-check me-2"></i>
-                    My Requests
-                </a>
-            </li>
-
-    
-            <li class="nav-item">
-                <a href="{{ route('Customer.Technicianassigned') }}"
-                   class="nav-link {{ request()->routeIs('Customer.Technicianassigned') ? 'active' : 'text-white' }}">
-                    <i class="bi bi-calendar-check me-2"></i>
-                     Assigned Technician
-                </a>
-            </li>
-
-       
-            <li class="nav-item">
-                <a href="{{ route('Customer.Servicehistory') }}"
-                   class="nav-link {{ request()->routeIs('Customer.Servicehistory') ? 'active' : 'text-white' }}">
-                    <i class="bi bi-clock-history me-2"></i>
-                    Service History
-                </a>
-            </li>
-
-       
-            <li class="nav-item">
-                <a href="{{ route('Customer.feedback') }}"
-                   class="nav-link {{ request()->routeIs('Customer.feedback') ? 'active' : 'text-white' }}">
-                    <i class="bi bi-star me-2"></i>
-                    Feedback
-                </a>
-            </li>
-
-        </ul>
-
-        <hr class="text-white">
-
-     
-        <div class="text-white mb-3">
-
-            <div class="d-flex align-items-center">
-
-                <i class="bi bi-person-circle fs-4 me-2"></i>
-
+    <main class="flex-grow-1 p-4 bg-light">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center mb-4 no-print">
                 <div>
-
-                    <strong>
-                        {{ Auth::user()->name }}
-                    </strong>
-
-                    <small class="d-block text-secondary">
-                        Customer
-                    </small>
-
+                    <h2 class="fw-bold mb-1">All Service History</h2>
                 </div>
 
+
+                <button type="button" class="btn btn-dark" onclick="window.print()">
+                    <i class="bi bi-printer me-2"></i>Print
+                </button>
             </div>
 
-        </div>
-
-
-        <form action="{{ route('logoutpage') }}" method="POST">
-
-            @csrf
-
-            <button type="submit" class="btn btn-danger w-100">
-
-                <i class="bi bi-box-arrow-right me-2"></i>
-                Logout
-
-            </button>
-
-        </form>
-
-    </nav>
-
-
-    <main class="flex-grow-1 p-4 bg-light">
-
-        <div class="container-fluid">
-
-         
-            <div class="mb-4">
-
-                <h2 class="fw-bold">
-                    Service History
-                </h2>
-
-                <p class="text-muted">
-                    View your previously completed services.
-                </p>
-
-            </div>
-
-
-            <div class="card border-0 shadow-sm">
-
-                <div class="card-body">
-
-                    <div class="table-responsive">
-
-                        <table class="table table-hover align-middle">
-
-                            <thead class="table-dark">
-
-                                <tr>
-                                    <th>Service ID</th>
-                                    <th>Service</th>
-                                    <th>Technician</th>
-                                    <th>Completed Date</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                </tr>
-
-                            </thead>
-
-                            <tbody>
-
-                                {{-- Sample Data --}}
-                                <tr>
-
-                                    <td>SR001</td>
-
-                                    <td>
-                                        Electrical Service
-                                    </td>
-
-                                    <td>
-                                        Kumar
-                                    </td>
-
-                                    <td>
-                                        15 Aug 2026
-                                    </td>
-
-                                    <td>
-
-                                        <span class="badge bg-success">
-                                            Completed
-                                        </span>
-
-                                    </td>
-
-                                    <td>
-
-                                        <button class="btn btn-sm btn-primary">
-                                            View Details
-                                        </button>
-
-                                    </td>
-
-                                </tr>
-
-
-                                <tr>
-
-                                    <td>SR002</td>
-
-                                    <td>
-                                        Computer Service
-                                    </td>
-
-                                    <td>
-                                        Raj
-                                    </td>
-
-                                    <td>
-                                        10 Aug 2026
-                                    </td>
-
-                                    <td>
-
-                                        <span class="badge bg-success">
-                                            Completed
-                                        </span>
-
-                                    </td>
-
-                                    <td>
-
-                                        <button class="btn btn-sm btn-primary">
-                                            View Details
-                                        </button>
-
-                                    </td>
-
-                                </tr>
-
-
-                                <tr>
-
-                                    <td>SR003</td>
-
-                                    <td>
-                                        Plumbing Service
-                                    </td>
-
-                                    <td>
-                                        Suresh
-                                    </td>
-
-                                    <td>
-                                        05 Aug 2026
-                                    </td>
-
-                                    <td>
-
-                                        <span class="badge bg-success">
-                                            Completed
-                                        </span>
-
-                                    </td>
-
-                                    <td>
-
-                                        <button class="btn btn-sm btn-primary">
-                                            View Details
-                                        </button>
-
-                                    </td>
-
-                                </tr>
-
-                            </tbody>
-
-                        </table>
-
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible fade show no-print">
+                    <i class="bi bi-check-circle me-2"></i>
+                    {{ session('success') }}
+
+                    <button type="button" class="btn-close" data-bs-dismiss="alert">
+                    </button>
+                </div>
+            @endif
+
+
+            @if (session('error'))
+                <div class="alert alert-danger alert-dismissible fade show no-print">
+                    <i class="bi bi-exclamation-circle me-2"></i>
+                    {{ session('error') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert">
+                    </button>
+                </div>
+            @endif
+
+
+            <div id="serviceHistoryPrintArea" class="card border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div>
+                            <h5 class="fw-bold mb-1"></h5>
+                          
+                        </div>
+                        <span class="badge bg-primary">
+                            {{ $servicehistories->count() }}
+                            {{ $servicehistories->count() == 1 ? 'Service' : 'Services' }}
+                        </span>
                     </div>
 
+
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Service</th>
+                                    <th>Description</th>
+                                    <th>Request Date</th>
+                                    <th>Request Time</th>
+                                    <th>Technician</th>
+                                    <th>Assignment Date</th>
+                                    <th>Assignment Time</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @forelse($servicehistories as $servicehistory)
+                                    @php
+                                        $serviceRequest = $servicehistory->serviceRequest;
+                                        $technician = $servicehistory->technician;
+                                        $status = strtolower($servicehistory->status ?? 'pending');
+                                    @endphp
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td><strong>{{ $serviceRequest->service_name ?? 'N/A' }}</strong></td>
+                                        <td>{{ $serviceRequest->description ?? 'N/A' }}</td>
+
+                                        <td>
+                                            @if ($serviceRequest && $serviceRequest->request_date)
+                                                <span class="badge bg-secondary">
+                                                    <i class="bi bi-calendar3 me-1"></i>
+                                                    {{ \Carbon\Carbon::parse($serviceRequest->request_date)->format('Y-m-d') }}
+                                                </span>
+                                            @else
+                                                <span class="text-muted">N/A</span>
+                                            @endif
+                                        </td>
+
+
+                                        <td>
+                                            @if ($serviceRequest && $serviceRequest->request_time)
+                                                <span class="badge bg-secondary">
+                                                    <i class="bi bi-clock me-1"></i>
+                                                    {{ \Carbon\Carbon::parse($serviceRequest->request_time)->format('H:i') }}
+                                                </span>
+                                            @else
+                                                <span class="text-muted">N/A</span>
+                                            @endif
+                                        </td>
+
+
+                                        <td>
+                                            @if ($technician)
+                                                <strong>
+                                                    {{ $technician->name }}
+                                                </strong>
+
+                                            @else
+                                                <span class="text-muted">
+                                                    Not Assigned
+                                                </span>
+                                            @endif
+                                        </td>
+
+
+                                        <td>
+                                            @if ($servicehistory->assigned_date)
+                                                <span class="badge bg-primary">
+                                                    <i class="bi bi-calendar-check me-1"></i>
+                                                    {{ \Carbon\Carbon::parse($servicehistory->assigned_date)->format('Y-m-d') }}
+                                                </span>
+                                            @else
+                                                <span class="text-muted">
+                                                    Not Assigned
+                                                </span>
+                                            @endif
+                                        </td>
+
+                                        <td>
+                                            @if ($servicehistory->assigned_time)
+                                                <span class="badge bg-primary">
+                                                    <i class="bi bi-clock me-1"></i>
+                                                    {{ \Carbon\Carbon::parse($servicehistory->assigned_time)->format('H:i') }}
+                                                </span>
+                                            @else
+                                                <span class="text-muted">
+                                                    Not Assigned
+                                                </span>
+                                            @endif
+                                        </td>
+
+                                        <td>
+                                            @if ($status === 'pending')
+                                                <span class="badge bg-warning text-dark">
+                                                    <i class="bi bi-hourglass-split me-1"></i>
+                                                    Pending
+                                                </span>
+                                            @elseif($status === 'scheduled')
+                                                <span class="badge bg-primary">
+                                                    <i class="bi bi-clock me-1"></i>
+                                                    Scheduled
+                                                </span>
+                                            @elseif($status === 'completed')
+                                                <span class="badge bg-success">
+                                                    <i class="bi bi-check-circle me-1"></i>
+                                                    Completed
+                                                </span>
+                                            @else
+                                                <span class="badge bg-secondary">
+                                                    {{ ucfirst($servicehistory->status ?? 'Unknown') }}
+                                                </span>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @empty
+
+
+                                    <tr>
+                                        <td colspan="9" class="text-center py-5">
+                                            <h6 class="text-muted mt-3">
+                                                No service history found.
+                                            </h6>
+                                        </td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-
             </div>
-
         </div>
-
     </main>
-
-</div>
-
 @endsection
