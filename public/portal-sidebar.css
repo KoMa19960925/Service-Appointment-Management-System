@@ -12,11 +12,6 @@
     border-right: 1px solid #293951;
 }
 
-.portal-sidebar--technician {
-    --sidebar-accent: #fde68a;
-    --sidebar-tint: #493b2c;
-}
-
 .portal-sidebar .sidebar-logo {
     display: flex;
     align-items: center;

@@ -13,11 +13,6 @@
     background: var(--sams-surface);
 }
 
-.sams.sams-technician {
-    --sams-accent: #80520a;
-    --sams-tint: #fff1d6;
-}
-
 .sams :is(h1, h2, h3) {
     letter-spacing: -.025em;
 }
@@ -386,7 +381,7 @@
     object-fit: cover;
 }
 
-.sams-customer .sams-dashboard-banner {
+:is(.sams-customer, .sams-technician) .sams-dashboard-banner {
     height: auto;
     object-fit: contain;
 }
