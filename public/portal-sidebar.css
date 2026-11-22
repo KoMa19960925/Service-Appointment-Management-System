@@ -12,11 +12,6 @@
     border-right: 1px solid #293951;
 }
 
-.portal-sidebar--customer {
-    --sidebar-accent: #99f6e4;
-    --sidebar-tint: #194346;
-}
-
 .portal-sidebar--technician {
     --sidebar-accent: #fde68a;
     --sidebar-tint: #493b2c;

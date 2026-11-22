@@ -1,4 +1,9 @@
-@props(['role', 'description', 'action', 'actionRoute', 'metrics', 'heroImage' => 'images/Admin.jpg'])
+@props([
+    'role', 'description', 'action', 'actionRoute', 'metrics',
+    'heroImage' => 'images/Admin.jpg',
+    'bannerImage' => 'images/service-workshop.webp',
+    'bannerAlt' => 'Service technician reviewing a tablet at a workshop bench',
+])
 
 <div class="sams-dashboard">
     <section class="sams-dashboard-hero mb-4">
@@ -29,6 +34,6 @@
         @endforeach
     </div>
 
-    <img class="sams-dashboard-banner mt-4" src="{{ asset('images/service-workshop.webp') }}"
-        alt="Service technician reviewing a tablet at a workshop bench" width="2172" height="724" loading="lazy">
+    <img class="sams-dashboard-banner mt-4" src="{{ asset($bannerImage) }}"
+        alt="{{ $bannerAlt }}" width="2172" height="724" loading="lazy">
 </div>

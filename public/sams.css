@@ -13,11 +13,6 @@
     background: var(--sams-surface);
 }
 
-.sams.sams-customer {
-    --sams-accent: #096760;
-    --sams-tint: #dff5f1;
-}
-
 .sams.sams-technician {
     --sams-accent: #80520a;
     --sams-tint: #fff1d6;
@@ -389,6 +384,11 @@
     height: clamp(10rem, 22vw, 19rem);
     border-radius: 1rem;
     object-fit: cover;
+}
+
+.sams-customer .sams-dashboard-banner {
+    height: auto;
+    object-fit: contain;
 }
 
 .sams-metric {
