@@ -1,13 +1,14 @@
 @extends('layouts.Customerapp')
 
 @section('content')
-    <main class="flex-grow-1 p-4 bg-light">
+    <div class="flex-grow-1 p-3 p-md-4 bg-light">
         <div class="container-fluid">
 
-            <div class="mb-4">
-                <h2 class="fw-bold">
-                    My Service Requests Details
-                </h2>
+            <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+                <h2 class="fw-bold mb-0">My Service Requests</h2>
+                <a href="{{ route('Customer.request.create') }}" class="btn btn-primary">
+                    <i class="bi bi-plus-lg me-1" aria-hidden="true"></i>New Service Request
+                </a>
             </div>
 
 
@@ -19,12 +20,12 @@
                             <thead class="table-dark">
 
                                 <tr>
-                                    <th>#</th>
+                                    <th>No</th>
                                     <th>Service Name</th>
                                     <th>Service Description</th>
                                     <th>Request Date</th>
                                     <th>Request Time</th>
-                                    <th>Actions</th>
+                                    <th class="text-center">Actions</th>
                                 </tr>
                             </thead>
 
@@ -38,7 +39,7 @@
                                         <td>{{ $servicerequest->request_date }}</td>
                                         <td>{{ $servicerequest->request_time }}</td>
 
-                                        <td class="text-center">
+                                        <td class="text-center text-nowrap">
                                             <a href="{{ route('requests.edit', $servicerequest->id) }}"
                                                 class="btn btn-sm btn-warning me-1">
                                                 <i class="bi bi-pencil-square"></i>Edit</a>
@@ -49,7 +50,7 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-danger"
-                                                    onclick="return confirm('Are you sure you want to delete this student?')">
+                                                    onclick="return confirm('Are you sure you want to delete this service request?')">
                                                     <i class="bi bi-trash"></i>Delete
                                                 </button>
                                             </form>
@@ -57,10 +58,8 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="6" class="text-center">
-                                            <span class="text-dark">
-                                                No servicerequest
-                                            </span>
+                                        <td colspan="6" class="text-center text-muted py-4">
+                                            You haven’t submitted any service requests yet.
                                         </td>
                                     </tr>
                                 @endforelse
@@ -70,6 +69,5 @@
                 </div>
             </div>
         </div>
-    </main>
     </div>
 @endsection

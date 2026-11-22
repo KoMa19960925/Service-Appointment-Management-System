@@ -8,26 +8,40 @@
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
+        <style>
+            .sams-brand-icon {
+                display: inline-grid;
+                place-items: center;
+                width: 38px;
+                height: 38px;
+                border: 1px solid rgba(147, 197, 253, .35);
+                border-radius: 10px;
+                background: #1e3a5f;
+                color: #dbeafe;
+                font-size: 18px;
+                line-height: 1;
+            }
+
+            .sams-brand-name {
+                font-size: 1.125rem;
+                letter-spacing: .08em;
+                line-height: 1;
+            }
+        </style>
+        <link rel="stylesheet" href="{{ asset('sams.css') }}">
     </head>
-    <body class="bg-light">
+    <body class="sams bg-light">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
 
     <div class="container">
 
         <a
-            class="navbar-brand fw-bold d-flex align-items-center"
+            class="navbar-brand fw-bold d-inline-flex align-items-center gap-2"
             href="{{ route('home') }}">
-
-            <span
-                class="bg-white text-dark rounded-2 d-flex align-items-center justify-content-center me-2"
-                style="width: 38px; height: 38px;">
-
+            <span class="sams-brand-icon" aria-hidden="true">
                 <i class="bi bi-tools"></i>
-
             </span>
-
-            SAMS
-
+            <span class="sams-brand-name">SAMS</span>
         </a>
 
 
@@ -35,7 +49,10 @@
             class="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#mainNavbar">
+            data-bs-target="#mainNavbar"
+            aria-controls="mainNavbar"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
 
             <span class="navbar-toggler-icon"></span>
 
@@ -120,9 +137,9 @@
 
 </nav>
 
-        <div class="container my-5">
+        <main>
             @yield('content')
-        </div>
+        </main>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 

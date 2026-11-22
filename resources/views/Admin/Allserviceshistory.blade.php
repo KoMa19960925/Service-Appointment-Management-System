@@ -42,7 +42,7 @@
                         <table class="table table-hover align-middle">
                             <thead class="table-dark">
                                 <tr>
-                                    <th>#</th>
+                                    <th>No</th>
                                     <th>Customer</th>
                                     <th>Service</th>
                                     <th>Description</th>
@@ -163,24 +163,28 @@
 
 
 
+
                                         <td>
-                                            @if ($history->payment)
+                                            @if ($history->payment && $history->payment->payment_status === 'Paid')
                                                 <span class="badge bg-success">
                                                     <i class="bi bi-check-circle me-1"></i>
                                                     Paid
                                                 </span>
-                                                <div class="small mt-1">
-                                                    Rs.
-                                                    {{ number_format($history->payment->amount, 2) }}
 
+                                                <div class="small mt-1">
+                                                    Rs. {{ number_format($history->payment->amount, 2) }}
                                                 </div>
-                                            @else
+                                            @elseif ($history->payment && $history->payment->payment_status === 'Pending')
                                                 <span class="badge bg-warning text-dark">
+                                                    <i class="bi bi-hourglass-split me-1"></i>
                                                     Pending
+                                                </span>
+                                            @else
+                                                <span class="badge bg-secondary">
+                                                    Not Submitted
                                                 </span>
                                             @endif
                                         </td>
-
 
                                         <td>
                                             @if ($history->status === 'Completed')
@@ -218,7 +222,6 @@
             </div>
         </div>
     </main>
-    </div>
 
 
 @endsection

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Customer;
 
 use App\Http\Controllers\Controller;
+use App\Models\Service;
 use App\Models\ServiceRequest;
 use App\Models\Assignedtechnician;
 use Illuminate\Http\Request;
@@ -11,28 +12,33 @@ class ServicerequController extends Controller
 {
     public function createRequest(Request $request)
     {
-        $service = $request->service;
-        return view(
-            'Customer.ServiceRequest',
-            compact('service')
-        );
+        return view('Customer.ServiceRequest', [
+            'services' => Service::orderBy('name')->get(),
+            'selectedService' => $request->integer('service'),
+        ]);
     }
 
 
     public function storeRequest(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'name' => 'required',
-            'service_name' => 'required',
+            'address' => 'required',
+            'phone' => 'required',
+            'service_id' => ['required', 'integer', 'exists:services,id'],
             'description' => 'required',
             'request_date' => 'required|date',
             'request_time' => 'required',
         ]);
 
+        $service = Service::findOrFail($validated['service_id']);
+
         ServiceRequest::create([
             'user_id' => auth()->id(),
             'name' => $request->name,
-            'service_name' => $request->service_name,
+            'address' => $request->address,
+            'phone' => $request->phone,
+            'service_name' => $service->name,
             'description' => $request->description,
             'request_date' => $request->request_date,
             'request_time' => $request->request_time,

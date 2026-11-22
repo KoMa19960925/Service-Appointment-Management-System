@@ -1,94 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAMS - Service & Appointment Management System</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-
-</head>
-
-<body class="bg-light">
-
-
-
-
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
-        <div class="container">
-
-            <a class="navbar-brand fw-bold d-flex align-items-center" href="{{ route('home') }}">
-
-                <span class="bg-white text-dark rounded-2 d-flex align-items-center justify-content-center me-2"
-                    style="width: 38px; height: 38px;">
-                    <i class="bi bi-tools"></i>
-                </span>SAMS
-
-            </a>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
-
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-
-            <div class="collapse navbar-collapse" id="mainNavbar">
-                <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
-
-
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('home') ? 'active fw-bold' : '' }}"
-                            href="{{ route('home') }}">Home
-                        </a>
-                    </li>
-
-
-
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('about') ? 'active fw-bold' : '' }}"
-                            href="{{ route('about') }}">About
-                        </a>
-                    </li>
-
-
-
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('loginpage') && request()->get('role') === 'admin' ? 'active fw-bold' : '' }}"
-                            href="{{ route('loginpage', ['role' => 'admin']) }}">
-                            Admin
-                        </a>
-                    </li>
-
-
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('loginpage') && request()->get('role') === 'technician' ? 'active fw-bold' : '' }}"
-                            href="{{ route('loginpage', ['role' => 'technician']) }}">Technician
-                        </a>
-                    </li>
-
-
-
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('loginpage') && request()->get('role') === 'customer' ? 'active fw-bold' : '' }}"
-                            href="{{ route('loginpage', ['role' => 'customer']) }}">Customer
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-
-    <section class="text-white d-flex align-items-center"
-        style="
-        min-height: 620px;
-        background:
-        linear-gradient(rgba(16, 60, 73, 0.88)),
-        url('https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1800&q=85')
-        center/cover;">
+@section('content')
+<section class="sams-home-hero text-white">
 
         <div class="container">
             <div class="row align-items-center">
@@ -118,7 +31,7 @@
 
 
                     <div class="d-flex flex-wrap gap-3">
-                        <a href="{{ route('loginpage') }}" class="btn btn-light btn-lg px-4">
+                        <a href="{{ route('loginpage', ['role' => 'customer']) }}" class="btn btn-light btn-lg px-4">
                             <i class="bi bi-calendar-check me-2"></i>Request a Service
                         </a>
 
@@ -126,7 +39,6 @@
 
                         <a href="{{ route('about') }}" class="btn btn-outline-light btn-lg px-4">
                             Learn More
-                            <i class="bi bi-arrow-right ms-2"></i>
                         </a>
 
                     </div>
@@ -141,7 +53,7 @@
 
 
                             <div class="col-6">
-                                <div class="bg-dark bg-opacity-75 rounded-3 p-4 text-center">
+                                <div class="bg-dark bg-opacity-75 rounded-3 p-2 p-sm-3 text-center">
                                     <i class="bi bi-person-workspace fs-1"></i>
                                     <h6 class="mt-3 mb-0">
                                         {{ $home->feature_1_title }}
@@ -154,7 +66,7 @@
 
 
                             <div class="col-6">
-                                <div class="bg-dark bg-opacity-75 rounded-3 p-4 text-center">
+                                <div class="bg-dark bg-opacity-75 rounded-3 p-2 p-sm-3 text-center">
                                     <i class="bi bi-calendar2-check fs-1"></i>
                                     <h6 class="mt-3 mb-0">
                                         {{ $home->feature_2_title }}
@@ -166,7 +78,7 @@
 
 
                             <div class="col-6">
-                                <div class="bg-dark bg-opacity-75 rounded-3 p-4 text-center">
+                                <div class="bg-dark bg-opacity-75 rounded-3 p-2 p-sm-3 text-center">
                                     <i class="bi bi-clipboard-check fs-1"></i>
                                     <h6 class="mt-3 mb-0">
                                         {{ $home->feature_3_title }}
@@ -178,7 +90,7 @@
 
 
                             <div class="col-6">
-                                <div class="bg-dark bg-opacity-75 rounded-3 p-4 text-center">
+                                <div class="bg-dark bg-opacity-75 rounded-3 p-2 p-sm-3 text-center">
                                     <i class="bi bi-star-fill fs-1"></i>
                                     <h6 class="mt-3 mb-0">
                                         {{ $home->feature_4_title }}
@@ -311,16 +223,4 @@
             </div>
         </div>
     </section>
-
-
-    @include('components.footer')
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
-
-
-
-</body>
-
-</html>
-
-
+@endsection

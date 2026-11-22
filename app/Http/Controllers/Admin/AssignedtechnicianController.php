@@ -17,12 +17,8 @@ class AssignedtechnicianController extends Controller
         $servicerequests = ServiceRequest::with(['assignedTechnician.technician'])->get();
         $technicians = User::where('role', 'technician')->orderBy('name')->get();
 
-        return view(
-            'Admin.Technicianassigned',
-            compact(
-                'servicerequests',
-                'technicians'
-            )
+        return view( 'Admin.Technicianassigned',
+            compact('servicerequests','technicians')
         );
     }
 

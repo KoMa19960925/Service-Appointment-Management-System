@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Customer;
 use App\Http\Controllers\Controller;
 use App\Models\Assignedtechnician;
 use App\Models\CustomerFeedback;
+use App\Models\Service;
 use App\Models\ServiceRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -37,7 +38,7 @@ class DashboardController extends Controller
 
     public function services()
     {
-        return view('Customer.services');
+        return view('Customer.services', ['services' => Service::orderBy('name')->get()]);
     }
 
 

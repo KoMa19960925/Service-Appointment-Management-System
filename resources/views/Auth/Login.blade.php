@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="min-vh-100 d-flex align-items-center justify-content-center bg-light py-4">
+<div class="sams-auth">
 
     <div class="container">
 
@@ -14,63 +14,12 @@
 
                     <div class="row g-0">
 
-                        <div class="col-lg-5 d-flex align-items-center position-relative overflow-hidden"
-                            style="background: linear-gradient(145deg, #344554, #0b1015); min-height: 560px;">
-
-                            <div class="position-absolute bg-dark rounded-circle"
-                                style="width: 230px; height: 230px; bottom: -100px; left: -80px; opacity: .8;">
+                        <div class="sams-auth-panel col-lg-5 d-flex align-items-center">
+                            <div class="text-white p-5">
+                                <i class="bi bi-tools fs-2 mb-3 d-block" aria-hidden="true"></i>
+                                <p class="h2 fw-bold">Service &amp; Appointment Management</p>
+                                <p class="text-white-50 mb-0">Sign in to manage service requests, appointments and assigned work.</p>
                             </div>
-
-                            <div class="position-absolute bg-dark rounded-circle"
-                                style="width: 170px; height: 170px; bottom: 20px; right: -70px; opacity: .7;">
-                            </div>
-
-                            <div class="position-absolute bg-dark rounded-circle"
-                                style="width: 150px; height: 150px; top: 80px; right: -70px; opacity: .7;">
-                            </div>
-
-                            <div class="position-relative text-white p-5">
-
-                                <div class="mb-4">
-                                    <i class="bi bi-tools fs-1"></i>
-                                </div>
-
-                                <h1 class="fw-bold display-6 mb-2">
-                                    WELCOME
-                                </h1>
-
-                                <h5 class="fw-semibold mb-4">
-                                    SERVICE & APPOINTMENT
-                                </h5>
-
-                                <p class="mb-4 text-white-50">
-                                    Manage your service requests, appointments,
-                                    technicians, payments and customer feedback
-                                    easily from one system.
-                                </p>
-
-                                <div class="d-flex align-items-center gap-3">
-
-                                    <div class="bg-white bg-opacity-25 rounded-circle p-3">
-                                        <i class="bi bi-calendar-check fs-4"></i>
-                                    </div>
-
-                                    <div>
-
-                                        <div class="fw-semibold">
-                                            Easy Service Management
-                                        </div>
-
-                                        <small class="text-white-50">
-                                            Simple and efficient
-                                        </small>
-
-                                    </div>
-
-                                </div>
-
-                            </div>
-
                         </div>
 
                         <div class="col-lg-7 bg-white">
@@ -220,7 +169,7 @@
 
                                     <button
                                         type="submit"
-                                        class="btn btn-dark w-100 py-2 fw-semibold rounded-2">
+                                        class="btn btn-primary w-100 py-2 fw-semibold rounded-2">
 
                                         <i class="bi bi-box-arrow-in-right me-2"></i>
 

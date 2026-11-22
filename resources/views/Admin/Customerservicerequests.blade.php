@@ -46,13 +46,16 @@
                         <table class="table table-hover align-middle">
                             <thead class="table-dark">
                                 <tr>
-                                    <th>#</th>
+                                    <th>No</th>
                                     <th>Customer</th>
+                                    <th>Customer Address</th>
+                                    <th>Customer phone</th>
                                     <th>Service Name</th>
                                     <th>Service Description</th>
                                     <th>Request Date</th>
                                     <th>Request Time</th>
                                     <th>Status</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
 
@@ -63,10 +66,37 @@
                                         <td><strong>{{ $servicerequest->id }}</strong></td>
                                         <td>
                                             <div class="d-flex align-items-center">
-                                                <div><strong>{{ $servicerequest->name }}</strong>
-                                                </div>
+                                                <div><strong>{{ $servicerequest->name }}</strong></div>
                                             </div>
                                         </td>
+
+
+
+                                        <td>
+                                            <div>
+                                                <strong>
+                                                    {{ $servicerequest->address }}
+                                                </strong>
+                                                <br>
+                                                <a href="https://www.google.com/maps/search/?api=1&query={{ urlencode($servicerequest->address) }}"
+                                                    target="_blank" class="text-primary text-decoration-none small">
+
+                                                    <i class="bi bi-geo-alt-fill me-1"></i>
+                                                    View Location
+                                                </a>
+
+                                            </div>
+                                        </td>
+
+
+
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div><strong>{{ $servicerequest->phone }}</strong></div>
+                                            </div>
+                                        </td>
+
+
 
                                         <td><span class="fw-semibold">{{ $servicerequest->service_name }}</span></td>
                                         <td><span>{{ $servicerequest->description }}</span></td>
@@ -91,10 +121,16 @@
                                                 <span class="badge bg-secondary">{{ $assignment->status }}</span>
                                             @endif
                                         </td>
+
+
+                                        <td>
+                                            <a href="{{ route('Admin.TechnicianAssigned') }}"
+                                                class="btn btn-primary btn-sm">
+                                                TechnicianAssigned
+                                            </a>
+                                        </td>
+
                                     </tr>
-
-
-
                                 @empty
                                     <tr>
                                         <td colspan="7" class="text-center py-5">
@@ -103,6 +139,9 @@
                                     </tr>
                                 @endforelse
 
+
+
+
                             </tbody>
                         </table>
                     </div>
@@ -110,5 +149,4 @@
             </div>
         </div>
     </main>
-    </div>
 @endsection

@@ -4,107 +4,173 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\TechnicianPayment;
-use App\Models\Assignedtechnician;
 use Illuminate\Http\Request;
 
 class TechnicianPaymentController extends Controller
 {
+    /**
+     * Admin - Technician Payments
+     */
     public function index()
     {
-        $assignments = Assignedtechnician::with([
+        $payments = TechnicianPayment::with([
             'technician',
             'serviceRequest',
-            'payment'
-        ])->where('status', 'Completed')->get();
+            'assignedTechnician',
+            'purchaseItems',
+            'purchaseImages',
+        ])
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         return view(
             'Admin.TechnicianPayment',
-            compact('assignments')
+            compact('payments')
         );
     }
 
-    public function create($id)
+
+    /**
+     * Admin - View Technician Submitted Details
+     */
+    public function viewTechnicianPayment($id)
     {
-        $assignment = Assignedtechnician::with([
+        $payment = TechnicianPayment::with([
             'technician',
             'serviceRequest',
-            'payment'
+            'assignedTechnician',
+            'purchaseItems',
+            'purchaseImages',
         ])->findOrFail($id);
-
-        if ($assignment->status !== 'Completed') {
-            return redirect()
-                ->route('Admin.TechnicianPayment')
-                ->with(
-                    'error',
-                    'Payment is available only after the work is completed.'
-                );
-        }
-
-        if ($assignment->payment) {
-            return redirect()
-                ->route('Admin.TechnicianPayment')
-                ->with(
-                    'error',
-                    'Payment has already been created for this work.'
-                );
-        }
 
         return view(
-            'Admin.CreateTechnicianPayment',
-            compact('assignment')
+            'Admin.ViewTechnicianPayment',
+            compact('payment')
         );
     }
 
-    public function store(Request $request, $id)
+
+    /**
+     * Admin - Pay Technician
+     */
+    public function payTechnician(Request $request, $id)
     {
-        $assignment = Assignedtechnician::with([
-            'technician',
-            'serviceRequest',
-            'payment'
+        $payment = TechnicianPayment::with([
+            'assignedTechnician'
         ])->findOrFail($id);
 
-        if ($assignment->status !== 'Completed') {
+
+        /*
+        |--------------------------------------------------------------------------
+        | Already Paid Check
+        |--------------------------------------------------------------------------
+        */
+
+        if ($payment->payment_status === 'Paid') {
+
             return redirect()
-                ->route('Admin.TechnicianPayment')
+                ->route(
+                    'Admin.ViewTechnicianPayment',
+                    $payment->id
+                )
                 ->with(
                     'error',
-                    'You can pay the technician only after completing the work.'
+                    'This technician payment has already been paid.'
                 );
         }
 
-        if ($assignment->payment) {
-            return redirect()
-                ->route('Admin.TechnicianPayment')
-                ->with(
-                    'error',
-                    'This technician has already been paid for this work.'
-                );
-        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Validate Admin Payment Details
+        |--------------------------------------------------------------------------
+        */
 
         $request->validate([
-            'amount' => 'required|numeric|min:0.01',
-            'payment_method' => 'required|in:Cash,Bank Transfer,Online',
-            'payment_reference' => 'nullable|string|max:255',
-            'notes' => 'nullable|string|max:1000',
+
+            'amount' => [
+                'required',
+                'numeric',
+                'min:0.01',
+            ],
+
+            'payment_method' => [
+                'required',
+                'in:Cash,Bank Transfer,Online',
+            ],
+
+            'payment_reference' => [
+                'nullable',
+                'string',
+                'max:255',
+            ],
+
+            'notes' => [
+                'nullable',
+                'string',
+                'max:1000',
+            ],
+
         ]);
 
-        TechnicianPayment::create([
-            'assigned_technician_id' => $assignment->id,
-            'technician_id' => $assignment->technician_id,
-            'service_request_id' => $assignment->service_request_id,
+
+        /*
+        |--------------------------------------------------------------------------
+        | Update Technician Payment
+        |--------------------------------------------------------------------------
+        */
+
+        $payment->update([
+
             'amount' => $request->amount,
-            'payment_method' => $request->payment_method,
-            'payment_status' => 'Paid',
-            'paid_at' => now(),
-            'payment_reference' => $request->payment_reference,
-            'notes' => $request->notes,
+
+            'payment_method' =>
+                $request->payment_method,
+
+            'payment_status' =>
+                'Paid',
+
+            'paid_at' =>
+                now(),
+
+            'payment_reference' =>
+                $request->payment_reference,
+
+            'notes' =>
+                $request->notes,
+
         ]);
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | After Admin Pays
+        | Assignment Status = Completed
+        |--------------------------------------------------------------------------
+        */
+
+        if ($payment->assignedTechnician) {
+
+            $payment->assignedTechnician->update([
+                'status' => 'Completed',
+            ]);
+        }
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | Redirect
+        |--------------------------------------------------------------------------
+        */
 
         return redirect()
-            ->route('Admin.TechnicianPayment')
+            ->route(
+                'Admin.ViewTechnicianPayment',
+                $payment->id
+            )
             ->with(
                 'success',
-                'Technician payment recorded successfully.'
+                'Technician payment completed successfully.'
             );
     }
 }

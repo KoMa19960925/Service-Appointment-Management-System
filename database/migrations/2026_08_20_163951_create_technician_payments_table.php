@@ -14,12 +14,16 @@ return new class extends Migration
             $table->foreignId('technician_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('service_request_id')->constrained('service_requests')->onDelete('cascade');
             $table->decimal('amount', 10, 2);
+            $table->time('work_start_time')->nullable();
+            $table->time('work_end_time')->nullable();
+            $table->text('work_description')->nullable();
             $table->string('payment_method');
             $table->string('payment_status')->default('Pending');
             $table->timestamp('paid_at')->nullable();
             $table->string('payment_reference')->nullable();
             $table->text('notes')->nullable();
             $table->timestamps();
+
         });
     }
 

@@ -34,24 +34,27 @@ class AuthController extends Controller
 
 
 
-    public function registerstore(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:8|confirmed',
-        ]);
+   public function registerstore(Request $request)
+{
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'address' => 'required|string|max:255',
+        'phone' => 'required|string|max:20',
+        'email' => 'required|email|unique:users,email',
+        'password' => 'required|string|min:8|confirmed',
+    ]);
 
+    User::create([
+        'name' => $request->name,
+        'address' => $request->address,
+        'phone' => $request->phone,
+        'email' => $request->email,
+        'password' => Hash::make($request->password),
+        'role' => 'customer',
+    ]);
 
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'role' => 'customer',
-        ]);
-
-        return redirect()->route('loginpage')->with('success', 'Registration Successful!');
-    }
+    return redirect()->route('loginpage')->with('success', 'Registration Successful!');
+}
 
     public function login()
     {

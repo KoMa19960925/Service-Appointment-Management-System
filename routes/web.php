@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdmindashboardController;
 use App\Http\Controllers\Admin\AssignedtechnicianController;
+use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\TechnicianPaymentController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Customer\DashboardController;
@@ -57,6 +58,8 @@ Route::middleware('auth')->group(function () {
 
 
     Route::get('/admin/dashboard',[AdmindashboardController::class, 'AdminDashboard'])->middleware('role:admin')->name('Admin.dashboard');
+    Route::get('/admin/services', [ServiceController::class, 'index'])->middleware('role:admin')->name('Admin.services.index');
+    Route::post('/admin/services', [ServiceController::class, 'store'])->middleware('role:admin')->name('Admin.services.store');
     Route::get('/admin/customer-service-requests',[AdmindashboardController::class, 'Customerservicerequests'])->middleware('role:admin')->name('Admin.Customerservicerequests');
     Route::get('/admin/customer-feedback',[AdmindashboardController::class, 'Customerfeedback'])->middleware('role:admin')->name('Admin.Customerfeedback');
     Route::get('/admin/service-history',[AdmindashboardController::class, 'Servicehistory'])->middleware('role:admin')->name('Admin.Servicehistory');
@@ -67,7 +70,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/technician/Createtechnicianassigned',[AssignedtechnicianController::class, 'Createtechnicianassigned'])->middleware('role:admin')->name('Admin.Createtechnicianassigned');
     Route::post('/admin/technician-assigned/{id}',[AssignedtechnicianController::class, 'assignTechnician'])->middleware('role:admin')->name('Admin.assignTechnician');
     Route::put( '/admin/technician-assigned/status/{id}',[AssignedtechnicianController::class, 'updateStatus'])->middleware('role:admin')->name('Admin.updateTechnicianStatus');
-    Route::get('/admin/technician-payments',[TechnicianPaymentController::class, 'index'])->middleware('role:admin')->name('Admin.TechnicianPayment');
+    // Route::get('/admin/technician-payments',[TechnicianPaymentController::class, 'index'])->middleware('role:admin')->name('Admin.TechnicianPayment');
     Route::get('/admin/technician-payment/create/{id}',[TechnicianPaymentController::class, 'create'])->middleware('role:admin')->name('Admin.CreateTechnicianPayment');
     Route::post('/admin/technician-payment/store/{id}',[TechnicianPaymentController::class, 'store'])->middleware('role:admin')->name('Admin.StoreTechnicianPayment');
     Route::delete('/admin/technician/delete/{id}',[AdmindashboardController::class, 'deleteTechnician'])->middleware('role:admin')->name('Admin.Technician.delete');
@@ -77,10 +80,17 @@ Route::middleware('auth')->group(function () {
     Route::put('/admin/technician/update/{user}',[AdmindashboardController::class, 'updateTechnician'])->middleware('role:admin')->name('Admin.technician.update');
     Route::get('/admin/home', [AdmindashboardController::class, 'Adminhome'])->middleware('role:admin')->name('Admin.home');
     
-    
+    Route::get('/admin/technician-payments',[TechnicianPaymentController::class, 'index'])->middleware(['auth', 'role:admin'])->name('Admin.TechnicianPayment');
+    Route::get('/admin/technician-payment/{id}',[TechnicianPaymentController::class, 'viewTechnicianPayment'])->middleware(['auth', 'role:admin'])->name('Admin.ViewTechnicianPayment');
+    Route::put('/admin/technician-payment/{id}/pay',[TechnicianPaymentController::class, 'payTechnician'])->middleware(['auth', 'role:admin'])->name('Admin.PayTechnician');
 
-   Route::get('/admin/home-edit',[AdmindashboardController::class, 'editHome'])->middleware('role:admin')->name('Admin.homeedit');
-   Route::put('/admin/home-update',[AdmindashboardController::class, 'updateHome'])->middleware('role:admin')->name('Admin.homeupdate');
+
+    Route::post('/technician/payment-details/{id}',[TechniciandashboardController::class, 'paymentDetailsStore'])->middleware('role:technician')->name('Technician.paymentdetails.store');
+    Route::get('/technician/payment-details/{id}',[TechniciandashboardController::class, 'paymentDetails'])->middleware('role:technician')->name('Technician.paymentdetails');
+   
+
+    Route::get('/admin/home-edit',[AdmindashboardController::class, 'editHome'])->middleware('role:admin')->name('Admin.homeedit');
+    Route::put('/admin/home-update',[AdmindashboardController::class, 'updateHome'])->middleware('role:admin')->name('Admin.homeupdate');
    
 
     Route::get('/technician/dashboard',[TechniciandashboardController::class, 'dashboard'])->middleware('role:technician')->name('Technician.dashboard');

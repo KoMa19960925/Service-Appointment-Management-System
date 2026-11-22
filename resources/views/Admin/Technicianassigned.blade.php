@@ -48,7 +48,7 @@
                         <table class="table table-hover align-middle">
                             <thead class="table-dark">
                                 <tr>
-                                    <th>#</th>
+                                    <th scope="col">No</th>
                                     <th>Customer Name</th>
                                     <th>Service Name</th>
                                     <th>Description</th>
@@ -59,6 +59,8 @@
                                     <th>Assignment Time</th>
                                     <th>Work Proof</th>
                                     <th>Status</th>
+                                    <th>Action</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -71,10 +73,7 @@
                                     @endphp
 
                                     <tr>
-                                        <td>
-                                            <strong>{{ $servicerequest->id }}</strong>
-                                        </td>
-
+                                        <td><strong>{{ $servicerequest->id }}</strong></td>
                                         <td>
                                             <strong>{{ $servicerequest->name }}</strong>
                                         </td>
@@ -246,7 +245,6 @@
                                         </td>
 
 
-
                                         <td style="min-width: 190px;">
                                             @if ($assignment)
                                                 @if ($assignment->status === 'Completed')
@@ -254,13 +252,15 @@
                                                         <i class="bi bi-check-circle me-1"></i>
                                                         Completed
                                                     </span>
-                                                @elseif($assignment->status === 'Scheduled')
+                                                @elseif ($assignment->status === 'Scheduled')
                                                     <span class="badge bg-primary">
-                                                        <i class="bi bi-clock me-1"></i>Scheduled
+                                                        <i class="bi bi-clock me-1"></i>
+                                                        Scheduled
                                                     </span>
-                                                @elseif($assignment->status === 'Pending')
+                                                @elseif ($assignment->status === 'Pending')
                                                     <span class="badge bg-warning text-dark">
-                                                        <i class="bi bi-hourglass-split me-1"></i>Pending
+                                                        <i class="bi bi-hourglass-split me-1"></i>
+                                                        Pending
                                                     </span>
                                                 @else
                                                     <span class="badge bg-secondary">
@@ -269,16 +269,30 @@
                                                 @endif
                                             @else
                                                 <span class="badge bg-warning text-dark">
-                                                    <i class="bi bi-hourglass-split me-1"></i>Pending
+                                                    <i class="bi bi-hourglass-split me-1"></i>
+                                                    Pending
                                                 </span>
+                                            @endif
+                                        </td>
+
+
+                                
+                                        <td style="min-width: 120px;">
+                                            @if ($assignment && $assignment->status === 'Completed')
+                                                <a href="{{ route('Admin.TechnicianPayment') }}"
+                                                    class="btn btn-primary btn-sm px-2 py-1">
+                                                    TechnicianPayment
+                                                </a>
+                                            @else
+                                                <span class="text-muted">-</span>
                                             @endif
                                         </td>
                                     </tr>
                                 @empty
 
-
                                     <tr>
-                                        <td colspan="11" class="text-center py-5">
+                                        
+                                        <td colspan="12" class="text-center py-5">
                                             <h5 class="text-muted mt-3">No customer service requests found</h5>
                                         </td>
                                     </tr>

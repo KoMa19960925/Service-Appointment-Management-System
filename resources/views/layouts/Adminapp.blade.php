@@ -24,18 +24,20 @@
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
+    <link rel="stylesheet" href="{{ asset('portal-sidebar.css') }}">
+    <link rel="stylesheet" href="{{ asset('sams.css') }}">
 </head>
 
 
-<body>
+<body class="sams sams-admin">
 
 
 <div class="admin-layout">
-    <nav class="admin-sidebar">
+    <nav class="portal-sidebar portal-sidebar--admin" aria-label="Admin navigation">
 
 
         <div class="sidebar-logo">
-            <div class="logo-icon">
+            <div class="logo-icon" aria-hidden="true">
                 <i class="bi bi-tools"></i>
 
             </div>
@@ -50,7 +52,7 @@
                 <a
                     href="{{ route('Admin.dashboard') }}"
                     class="nav-link
-                    {{ request()->routeIs('Admin.dashboard') ? 'active' : '' }}">
+                    {{ request()->routeIs('Admin.dashboard') ? 'active' : '' }}" @if (request()->routeIs('Admin.dashboard')) aria-current="page" @endif>
                     <i class="bi bi-speedometer2"></i>
                     <span>Dashboard</span>
 
@@ -62,9 +64,18 @@
 
             <li class="nav-item">
                 <a
+                    href="{{ route('Admin.services.index') }}"
+                    class="nav-link {{ request()->routeIs('Admin.services.*') ? 'active' : '' }}" @if (request()->routeIs('Admin.services.*')) aria-current="page" @endif>
+                    <i class="bi bi-tools" aria-hidden="true"></i>
+                    <span>Services</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a
                     href="{{ route('Admin.Techniciandetails') }}"
                     class="nav-link
-                    {{ request()->routeIs('Admin.Techniciandetails') ? 'active' : '' }}">
+                    {{ request()->routeIs('Admin.Techniciandetails') ? 'active' : '' }}" @if (request()->routeIs('Admin.Techniciandetails')) aria-current="page" @endif>
 
                     <i class="bi bi-person-lines-fill"></i>
                     <span>
@@ -80,7 +91,7 @@
                 <a
                     href="{{ route('Admin.Customerservicerequests') }}"
                     class="nav-link
-                    {{ request()->routeIs('Admin.Customerservicerequests') ? 'active' : '' }}">
+                    {{ request()->routeIs('Admin.Customerservicerequests') ? 'active' : '' }}" @if (request()->routeIs('Admin.Customerservicerequests')) aria-current="page" @endif>
 
                     <i class="bi bi-clipboard-check"></i>
                     <span> Customer Requests</span>
@@ -94,7 +105,7 @@
                 <a
                     href="{{ route('Admin.TechnicianAssigned') }}"
                     class="nav-link
-                    {{ request()->routeIs('Admin.TechnicianAssigned') ? 'active' : '' }}">
+                    {{ request()->routeIs('Admin.TechnicianAssigned') ? 'active' : '' }}" @if (request()->routeIs('Admin.TechnicianAssigned')) aria-current="page" @endif>
 
                     <i class="bi bi-calendar-check"></i>
                     <span> Technician Assigned</span>
@@ -109,7 +120,7 @@
                 <a
                     href="{{ route('Admin.TechnicianPayment') }}"
                     class="nav-link
-                    {{ request()->routeIs('Admin.TechnicianPayment') ? 'active' : '' }}">
+                    {{ request()->routeIs('Admin.TechnicianPayment') ? 'active' : '' }}" @if (request()->routeIs('Admin.TechnicianPayment')) aria-current="page" @endif>
                     <i class="bi bi-cash-coin"></i>
                     <span>
                         Technician Payments
@@ -124,7 +135,7 @@
                 <a
                     href="{{ route('Admin.Servicehistory') }}"
                     class="nav-link
-                    {{ request()->routeIs('Admin.Servicehistory') ? 'active' : '' }}">
+                    {{ request()->routeIs('Admin.Servicehistory') ? 'active' : '' }}" @if (request()->routeIs('Admin.Servicehistory')) aria-current="page" @endif>
 
                     <i class="bi bi-clock-history"></i>
                     <span>
@@ -140,7 +151,7 @@
                 <a
                     href="{{ route('Admin.Customerfeedback') }}"
                     class="nav-link
-                    {{ request()->routeIs('Admin.Customerfeedback') ? 'active' : '' }}">
+                    {{ request()->routeIs('Admin.Customerfeedback') ? 'active' : '' }}" @if (request()->routeIs('Admin.Customerfeedback')) aria-current="page" @endif>
                     <i class="bi bi-star"></i>
                     <span>Customer Feedback</span>
                 </a>
@@ -154,7 +165,7 @@
                 <a
                     href="{{ route('Admin.homeedit') }}"
                     class="nav-link
-                    {{ request()->routeIs('Admin.homeedit') ? 'active' : '' }}">
+                    {{ request()->routeIs('Admin.homeedit') ? 'active' : '' }}" @if (request()->routeIs('Admin.homeedit')) aria-current="page" @endif>
 
                     <i class="bi bi-house"></i>
                     <span>Home</span>
@@ -165,87 +176,12 @@
         </ul>
 
 
-        <div class="sidebar-bottom">
-            <div class="admin-profile">
-                <div class="profile-icon">
-                    <i class="bi bi-person"></i>
-                </div>
-
-
-                <div>
-                    <strong>
-                        {{ Auth::user()->name }}
-                    </strong>
-                    <small>Admin</small>
-                </div>
-            </div>
-
-
-
-            <form action="{{ route('logoutpage') }}" method="POST">
-                @csrf
-
-                <button
-                    type="submit"
-                    class="logout-btn">
-                    <i class="bi bi-box-arrow-right"></i>Logout
-                </button>
-            </form>
-        </div>
-
-
     </nav>
 
 
 
     <div class="admin-right">
-        <header class="admin-topbar">
-
-            <div class="top-search">
-                <i class="bi bi-search"></i>
-                <input
-                    type="text"
-                    placeholder="Tap here to search">
-                <button>
-                    <i class="bi bi-chevron-down"></i>
-                </button>
-            </div>
-
-
-
-            <div class="topbar-right">
-                <button class="top-icon">
-                    <i class="bi bi-bell"></i>
-                    <span class="notification-dot"></span>
-                </button>
-
-
-                <button class="top-icon">
-                    <i class="bi bi-chat-square-text"></i>
-                </button>
-
-
-
-                <div class="top-admin-profile">
-                    <div class="top-avatar">
-                        {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
-                    </div>
-
-
-                    <div class="top-admin-info">
-                        <strong>
-                            {{ Auth::user()->name }}
-                        </strong>
-
-                        <small>
-                            Administrator
-                        </small>
-                    </div>
-
-                    <i class="bi bi-chevron-down"></i>
-                </div>
-            </div>
-        </header>
+        <x-portal-topbar role="Admin" />
 
 
 
@@ -253,6 +189,7 @@
         <main class="admin-content">
             @yield('content')
         </main>
+        @include('components.footer')
 
     </div>
 
@@ -400,7 +337,7 @@ body {
 
     padding: 0;
 
-    background: #f5f6f8;
+    background: var(--sams-surface);
 
     font-family:
         Arial,
@@ -424,238 +361,6 @@ body {
 
 
 
-.admin-sidebar {
-
-    width: 250px;
-
-    min-width: 250px;
-
-    height: 100vh;
-
-    position: fixed;
-
-    left: 0;
-
-    top: 0;
-
-    background: #212529;
-
-    color: white;
-
-    display: flex;
-
-    flex-direction: column;
-
-    z-index: 1000;
-
-}
-
-
-
-
-.sidebar-logo {
-
-    height: 76px;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-
-    padding: 0 22px;
-
-    font-size: 22px;
-
-    font-weight: 700;
-
-    border-bottom:
-        1px solid rgba(255,255,255,.08);
-
-}
-
-
-.logo-icon {
-
-    width: 40px;
-
-    height: 40px;
-
-    background: #0d6efd;
-
-    border-radius: 9px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-}
-
-
-
-.sidebar-menu {
-
-    padding: 20px 14px;
-
-    margin: 0;
-
-    flex: 1;
-
-    overflow-y: auto;
-
-}
-
-
-.sidebar-menu .nav-item {
-
-    margin-bottom: 5px;
-
-}
-
-
-.sidebar-menu .nav-link {
-
-    color: #d9dde1;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 13px;
-
-    padding: 12px 14px;
-
-    border-radius: 8px;
-
-    font-size: 14px;
-
-    transition: .2s;
-
-}
-
-
-.sidebar-menu .nav-link i {
-
-    width: 22px;
-
-    text-align: center;
-
-    font-size: 18px;
-
-}
-
-
-.sidebar-menu .nav-link:hover {
-
-    background: #343a40;
-
-    color: white;
-
-}
-
-
-.sidebar-menu .nav-link.active {
-
-    background: #0d6efd;
-
-    color: white;
-
-}
-
-
-
-.sidebar-bottom {
-
-    padding: 15px;
-
-    border-top:
-        1px solid rgba(255,255,255,.08);
-
-}
-
-
-.admin-profile {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    margin-bottom: 15px;
-
-}
-
-
-.profile-icon {
-
-    width: 40px;
-
-    height: 40px;
-
-    border-radius: 50%;
-
-    background: #343a40;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-}
-
-
-.admin-profile strong {
-
-    display: block;
-
-    font-size: 14px;
-
-}
-
-
-.admin-profile small {
-
-    display: block;
-
-    color: #adb5bd;
-
-    font-size: 12px;
-
-}
-
-
-.logout-btn {
-
-    width: 100%;
-
-    border: none;
-
-    background: #dc3545;
-
-    color: white;
-
-    border-radius: 7px;
-
-    padding: 10px;
-
-    font-size: 14px;
-
-}
-
-
-.logout-btn:hover {
-
-    background: #bb2d3b;
-
-}
-
-
-
-
 .admin-right {
 
     margin-left: 250px;
@@ -669,250 +374,14 @@ body {
 
 
 
-.admin-topbar {
-
-    height: 76px;
-
-    width: 100%;
-
-    background: white;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    padding: 10px 28px;
-
-    border-bottom:
-        1px solid #e9ecef;
-
-    box-shadow:
-        0 2px 8px rgba(0,0,0,.04);
-
-}
-
-
-
-
-.top-search {
-
-    width: 52%;
-
-    max-width: 650px;
-
-    height: 46px;
-
-    background: #f5f6f8;
-
-    border-radius: 25px;
-
-    display: flex;
-
-    align-items: center;
-
-    overflow: hidden;
-
-}
-
-
-.top-search > i {
-
-    margin-left: 18px;
-
-    font-size: 18px;
-
-    color: #495057;
-
-}
-
-
-.top-search input {
-
-    flex: 1;
-
-    border: none;
-
-    outline: none;
-
-    background: transparent;
-
-    padding: 0 14px;
-
-    font-size: 14px;
-
-}
-
-
-.top-search button {
-
-    width: 55px;
-
-    height: 100%;
-
-    border: none;
-
-    border-left:
-        1px solid #dee2e6;
-
-    background: transparent;
-
-}
-
-
-
-
-
-.topbar-right {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 15px;
-
-}
-
-
-.top-icon {
-
-    width: 40px;
-
-    height: 40px;
-
-    border: none;
-
-    background: transparent;
-
-    font-size: 20px;
-
-    position: relative;
-
-    color: #343a40;
-
-}
-
-
-.top-icon:hover {
-
-    color: #0d6efd;
-
-}
-
-
-.notification-dot {
-
-    position: absolute;
-
-    top: 5px;
-
-    right: 5px;
-
-    width: 7px;
-
-    height: 7px;
-
-    background: #20c997;
-
-    border-radius: 50%;
-
-    border:
-        1px solid white;
-
-}
-
-
-
-
-.top-admin-profile {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    padding-left: 5px;
-
-}
-
-
-.top-avatar {
-
-    width: 45px;
-
-    height: 45px;
-
-    border-radius: 50%;
-
-    background: #dff5ee;
-
-    color: #198754;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    font-weight: 700;
-
-    font-size: 17px;
-
-}
-
-
-.top-admin-info {
-
-    display: flex;
-
-    flex-direction: column;
-
-    line-height: 1.2;
-
-}
-
-
-.top-admin-info strong {
-
-    font-size: 14px;
-
-}
-
-
-.top-admin-info small {
-
-    color: #8b939b;
-
-    font-size: 11px;
-
-    margin-top: 3px;
-
-}
-
-
-.top-admin-profile > i {
-
-    font-size: 13px;
-
-    color: #6c757d;
-
-    margin-left: 5px;
-
-}
-
-
-
-
 .admin-content {
 
     width: 100%;
 
     min-height:
-        calc(100vh - 76px);
+        calc(100vh - 72px);
 
-    background: #f5f6f8;
+    background: var(--sams-surface);
 
 }
 
@@ -920,15 +389,6 @@ body {
 
 
 @media (max-width: 992px) {
-
-    .admin-sidebar {
-
-        width: 220px;
-
-        min-width: 220px;
-
-    }
-
 
     .admin-right {
 
@@ -940,85 +400,10 @@ body {
     }
 
 
-    .top-admin-info {
-
-        display: none;
-
-    }
-
 }
 
 
 @media (max-width: 768px) {
-
-    .admin-sidebar {
-
-        width: 70px;
-
-        min-width: 70px;
-
-    }
-
-
-    .sidebar-logo {
-
-        justify-content: center;
-
-        padding: 0;
-
-    }
-
-
-    .sidebar-logo span {
-
-        display: none;
-
-    }
-
-
-    .sidebar-menu .nav-link {
-
-        justify-content: center;
-
-        padding: 13px;
-
-    }
-
-
-    .sidebar-menu .nav-link span {
-
-        display: none;
-
-    }
-
-
-    .sidebar-menu .nav-link i {
-
-        margin: 0;
-
-    }
-
-
-    .admin-profile > div:not(.profile-icon) {
-
-        display: none;
-
-    }
-
-
-    .logout-btn {
-
-        font-size: 0;
-
-    }
-
-
-    .logout-btn i {
-
-        font-size: 18px;
-
-    }
-
 
     .admin-right {
 
@@ -1030,43 +415,14 @@ body {
     }
 
 
-    .top-search {
-
-        width: 55%;
-
-    }
-
 }
 
 
-@media (max-width: 576px) {
-
-    .admin-topbar {
-
-        padding: 10px 15px;
-
-    }
-
-
-    .top-search {
-
-        width: 60%;
-
-    }
-
-
-    .top-admin-profile {
-
-        display: none;
-
-    }
-
-}
 
 </style>
 
 
-@include('components.footer')
+
 </body>
 
 </html>

@@ -53,7 +53,7 @@
                         <table class="table table-hover align-middle">
                             <thead class="table-dark">
                                 <tr>
-                                    <th>#</th>
+                                    <th>No</th>
                                     <th>Service</th>
                                     <th>Description</th>
                                     <th>Request Date</th>

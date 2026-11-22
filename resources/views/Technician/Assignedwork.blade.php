@@ -67,8 +67,10 @@
                         <table class="table table-hover align-middle">
                             <thead class="table-dark">
                                 <tr>
-                                    <th>#</th>
+                                    <th scope="col">No</th>
                                     <th>Customer Name</th>
+                                    <th>Customer Address</th>
+                                    <th>Customer phone</th>
                                     <th>Service Name</th>
                                     <th>Description</th>
                                     <th>Customer Request Date</th>
@@ -77,6 +79,7 @@
                                     <th>Assignment Time</th>
                                     <th>Work Proof</th>
                                     <th>Status</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
 
@@ -90,10 +93,33 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td><strong>{{ $serviceRequest->name ?? '-' }}</strong></td>
+
+
+                                        <td>
+                                            <div>
+                                                <strong>
+                                                    {{ $serviceRequest->address ?? '-' }}
+                                                </strong>
+                                                @if ($serviceRequest && $serviceRequest->address)
+                                                    <br>
+                                                    <a href="https://www.google.com/maps/search/?api=1&query={{ urlencode($serviceRequest->address) }}"
+                                                        target="_blank" class="text-primary text-decoration-none small">
+                                                        <i class="bi bi-geo-alt-fill me-1"></i>
+                                                        View Location
+                                                    </a>
+                                                @endif
+                                            </div>
+                                        </td>
+
+
+                                        <td>{{ $serviceRequest->phone ?? '-' }}</td>
                                         <td>{{ $serviceRequest->service_name ?? '-' }}</td>
                                         <td style="min-width: 180px">{{ $serviceRequest->description ?? '-' }}</td>
-                                        <td>
 
+
+
+
+                                        <td>
                                             @if ($serviceRequest && $serviceRequest->request_date)
                                                 <span class="badge bg-secondary">
                                                     <i class="bi bi-calendar3 me-1"></i>
@@ -238,12 +264,12 @@
                                                     <i class="bi bi-check-circle me-1"></i>
                                                     Completed
                                                 </span>
-                                            @elseif($assignedtechnician->status === 'Scheduled')
+                                            @elseif ($assignedtechnician->status === 'Scheduled')
                                                 <span class="badge bg-primary">
                                                     <i class="bi bi-clock me-1"></i>
                                                     Scheduled
                                                 </span>
-                                            @elseif($assignedtechnician->status === 'Pending')
+                                            @elseif ($assignedtechnician->status === 'Pending')
                                                 <span class="badge bg-warning text-dark">
                                                     <i class="bi bi-hourglass-split me-1"></i>
                                                     Pending
@@ -254,13 +280,24 @@
                                                 </span>
                                             @endif
                                         </td>
+
+
+                                        <td>
+                                            @if ($assignedtechnician->status === 'Completed')
+                                                <a href="{{ route('Technician.Payment') }}"
+                                                    class="btn btn-primary btn-sm px-2 py-1">
+                                                    Payment
+                                                </a>
+                                            @else
+                                                <span class="text-muted">-</span>
+                                            @endif
+                                        </td>
                                     </tr>
                                 @empty
 
 
-
                                     <tr>
-                                        <td colspan="10" class="text-center py-5">
+                                        <td colspan="13" class="text-center py-5">
                                             <h5 class="mt-3 text-muted">
                                                 No assigned work found.
                                             </h5>
@@ -274,6 +311,5 @@
             </div>
         </div>
     </main>
-    </div>
 
 @endsection

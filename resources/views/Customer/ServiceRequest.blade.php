@@ -36,15 +36,55 @@
 
 
 
+                             <div class="mb-3">
+                                <label class="form-label fw-semibold">
+                                    Address
+                                </label>
+
+                                <input type="text" name="address" class="form-control" value="{{ Auth::user()->address }}"
+                                    readonly>
+
+                                @error('address')
+                                    <span class="text-danger">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+                            </div>
+
+
+
+                             <div class="mb-3">
+                                <label class="form-label fw-semibold">
+                                     Phone Number
+                                </label>
+
+                                <input type="text" name="phone" class="form-control" value="{{ Auth::user()->phone}}"
+                                    readonly>
+
+                                @error('phone')
+                                    <span class="text-danger">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
+                            </div>
+
+
+
 
                             <div class="mb-3">
-                                <label class="form-label fw-semibold">
+                                <label for="service_id" class="form-label fw-semibold">
                                     Service Name
                                 </label>
-                                <input type="text" name="service_name" class="form-control"
-                                    value="{{ $service }}"readonly>
+                                <select id="service_id" name="service_id" class="form-select" required>
+                                    <option value="">Select a service</option>
+                                    @foreach ($services as $service)
+                                        <option value="{{ $service->id }}" @selected((string) old('service_id', $selectedService) === (string) $service->id)>
+                                            {{ $service->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
 
-                                @error('service_name')
+                                @error('service_id')
                                     <span class="text-danger">
                                         {{ $message }}
                                     </span>
