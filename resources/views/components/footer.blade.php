@@ -1,5 +1,7 @@
-<footer class="bg-dark text-white text-center py-3 mt-3 fixed-bottom">
+<footer class="bg-black text-white py-3">
     <div class="container">
-        &copy; 2026 Service & Appointment Management System.
+        <div class="text-center text-white-50 small">
+            © {{ date('Y') }} SAMS. All Rights Reserved.
+        </div>
     </div>
 </footer>

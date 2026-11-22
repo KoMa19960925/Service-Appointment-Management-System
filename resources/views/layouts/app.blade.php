@@ -9,8 +9,8 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
     </head>
-    <body class="bg-dark">
-<nav class="navbar navbar-expand-lg navbar-dark bg-secondary sticky-top shadow-sm">
+    <body class="bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
 
     <div class="container">
 
@@ -243,6 +243,6 @@ function togglePassword(inputId, iconId)
 
 </script>
 
-
+@include('components.footer')
     </body>
 </html>

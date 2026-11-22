@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="min-vh-100 d-flex align-items-center justify-content-center bg-dark py-4">
+<div class="min-vh-100 d-flex align-items-center justify-content-center bg-light py-4">
 
     <div class="container">
 
@@ -17,7 +17,7 @@
                         <div class="col-lg-5 d-flex align-items-center position-relative overflow-hidden"
                             style="background: linear-gradient(145deg, #344554, #0b1015); min-height: 620px;">
 
-                            <div class="position-absolute bg-dark rounded-circle"
+                            <div class="position-absolute bg-light rounded-circle"
                                 style="width: 230px; height: 230px; bottom: -100px; left: -80px; opacity: .8;">
                             </div>
 
@@ -321,3 +321,5 @@
 </div>
 
 @endsection
+
+

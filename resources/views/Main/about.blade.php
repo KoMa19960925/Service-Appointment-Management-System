@@ -354,37 +354,11 @@
             </div>
 
         </div>
-
     </section>
+@include('components.footer')
 
 
-   
-
-    <footer class="bg-black text-white py-4">
-
-        <div class="container">
-
-            <div class="row align-items-center">
-
-                <div class="col-md-6">
-
-                </div>
-
-            <div class="text-center text-white-50 small">
-
-                © {{ date('Y') }} SAMS. All Rights Reserved.
-
-            </div>
-
-        </div>
-
-    </footer>
-
-
-    <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
-
 </html>

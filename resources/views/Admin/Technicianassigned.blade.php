@@ -279,7 +279,6 @@
 
                                     <tr>
                                         <td colspan="11" class="text-center py-5">
-                                            <i class="bi bi-clipboard-x fs-1 text-muted"></i>
                                             <h5 class="text-muted mt-3">No customer service requests found</h5>
                                         </td>
                                     </tr>

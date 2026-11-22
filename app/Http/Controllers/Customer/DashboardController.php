@@ -41,15 +41,6 @@ class DashboardController extends Controller
     }
 
 
-
-    // public function requests()
-    // {
-    //     return view('Customer.Myrequests');
-    // }
-
-
-
-
     public function feedback()
     {
 

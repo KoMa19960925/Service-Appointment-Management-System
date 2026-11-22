@@ -6,24 +6,27 @@ use App\Http\Controllers\Admin\TechnicianPaymentController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Customer\DashboardController;
 use App\Http\Controllers\Customer\ServicerequController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Technician\TechniciandashboardController;
+use App\Models\HomeContent;
 use App\Models\Technician;
 use Illuminate\Support\Facades\Route;
 
 
+// Route::get('/', function () {
+//     return view('Main.home');
+// })->name('home');
 
-Route::get('/', function () {
-    return view('Main.home');
-})->name('home');
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
 
 Route::get('/about', function () {
     return view('Main.about');
-})->name('about');
+    })->name('about');
 
 
-// Route::get('/login', function () {
-//     return redirect()->route('loginpage');
-// });
+
 
 Route::get('/register', [AuthController::class, 'register'])->name('registerpage');
 Route::post('/registerstore', [AuthController::class, 'registerstore'])->name('registerstore');
@@ -33,12 +36,8 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logoutpage');
 
 
 
-
-
-
-
 Route::middleware('auth')->group(function () {
-    
+
 
     Route::get('/customer/dashboard',[DashboardController::class, 'customerDashboard'])->middleware('role:customer')->name('Customer.dashboard');
     Route::get('/customer/services',[DashboardController::class, 'services'])->middleware('role:customer')->name('Customer.services');
@@ -76,10 +75,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/customer-feedback',[AdmindashboardController::class, 'Customerfeedback'])->middleware('role:admin')->name('Admin.Customerfeedback');
     Route::get('/admin/technician/edit/{user}',[AdmindashboardController::class, 'editTechnician'])->middleware('role:admin')->name('Admin.technician.edit');
     Route::put('/admin/technician/update/{user}',[AdmindashboardController::class, 'updateTechnician'])->middleware('role:admin')->name('Admin.technician.update');
+    Route::get('/admin/home', [AdmindashboardController::class, 'Adminhome'])->middleware('role:admin')->name('Admin.home');
+    
+    
 
-
-
-
+   Route::get('/admin/home-edit',[AdmindashboardController::class, 'editHome'])->middleware('role:admin')->name('Admin.homeedit');
+   Route::put('/admin/home-update',[AdmindashboardController::class, 'updateHome'])->middleware('role:admin')->name('Admin.homeupdate');
+   
 
     Route::get('/technician/dashboard',[TechniciandashboardController::class, 'dashboard'])->middleware('role:technician')->name('Technician.dashboard');
     Route::get('/technician/assigned-work',[TechniciandashboardController::class, 'Assignedwork'])->middleware('role:technician')->name('Technician.Assignedwork');
@@ -89,7 +91,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/technician/Customerfeedback',[TechniciandashboardController::class, 'feedback'])->middleware('role:technician')->name('Technician.Customerfeedback');
     Route::delete('/technician/assigned-work/{id}/delete-proof',[TechniciandashboardController::class, 'deleteWorkProof'])->middleware('role:technician')->name('Technician.deleteWorkProof');
     Route::get('/technician/payment',[TechniciandashboardController::class, 'Payment'])->middleware('role:technician')->name('Technician.Payment');
-
 
 
 

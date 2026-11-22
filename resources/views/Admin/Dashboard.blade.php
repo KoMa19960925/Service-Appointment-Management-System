@@ -126,7 +126,11 @@
             </div>
         </div>
     </main>
-    </div>
 
-    {{-- @include('components.footer') --}}
 @endsection
+
+
+
+ 
+
+      
