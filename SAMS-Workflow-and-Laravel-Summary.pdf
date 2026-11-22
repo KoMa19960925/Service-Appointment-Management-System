@@ -1,0 +1,124 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [5 0 R 7 0 R] /Count 2 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 6 0 R >>
+endobj
+6 0 obj
+<< /Length 3428 >>
+stream
+0.07 0.12 0.20 rg 0 695 595 147 re f
+0.42 0.68 0.98 rg 42 726 36 3 re f
+BT /F2 10 Tf 0.66 0.80 1 rg 1 0 0 1 42 801 Tm (SAMS  /  LARAVEL 12) Tj ET
+BT /F2 26 Tf 1 1 1 rg 1 0 0 1 42 764 Tm (System workflow) Tj ET
+BT /F1 11 Tf 0.85 0.90 0.98 rg 1 0 0 1 42 742 Tm (Service & Appointment Management System) Tj ET
+BT /F1 11 Tf 0.28 0.35 0.45 rg 1 0 0 1 42 665 Tm (SAMS coordinates service requests, appointments, technician assignments, work proof,) Tj ET
+BT /F1 11 Tf 0.28 0.35 0.45 rg 1 0 0 1 42 650 Tm (payment records, and feedback across three role-based portals.) Tj ET
+0.90 0.94 1 rg 42 593 27 26 re f
+BT /F2 12 Tf 0.14 0.33 0.65 rg 1 0 0 1 51 602 Tm (1) Tj ET
+BT /F2 13 Tf 0.07 0.12 0.20 rg 1 0 0 1 83 607 Tm (Create the service catalog  |  Admin) Tj ET
+BT /F1 11 Tf 0.28 0.35 0.45 rg 1 0 0 1 83 588 Tm (The admin adds a service name and description. The service appears on the) Tj ET
+BT /F1 11 Tf 0.28 0.35 0.45 rg 1 0 0 1 83 573 Tm (customer Services page.) Tj ET
+0.90 0.94 1 rg 42 524 27 26 re f
+BT /F2 12 Tf 0.14 0.33 0.65 rg 1 0 0 1 51 533 Tm (2) Tj ET
+BT /F2 13 Tf 0.07 0.12 0.20 rg 1 0 0 1 83 538 Tm (Submit a service request  |  Customer) Tj ET
+BT /F1 11 Tf 0.28 0.35 0.45 rg 1 0 0 1 83 519 Tm (The customer selects a listed service, describes the issue, and chooses a) Tj ET
+BT /F1 11 Tf 0.28 0.35 0.45 rg 1 0 0 1 83 504 Tm (preferred date and time. The request appears in My Requests.) Tj ET
+0.90 0.94 1 rg 42 455 27 26 re f
+BT /F2 12 Tf 0.14 0.33 0.65 rg 1 0 0 1 51 464 Tm (3) Tj ET
+BT /F2 13 Tf 0.07 0.12 0.20 rg 1 0 0 1 83 469 Tm (Assign and schedule a technician  |  Admin) Tj ET
+BT /F1 11 Tf 0.28 0.35 0.45 rg 1 0 0 1 83 450 Tm (The admin reviews the request, selects a technician, and sets the appointment) Tj ET
+BT /F1 11 Tf 0.28 0.35 0.45 rg 1 0 0 1 83 435 Tm (date and time. The assignment status becomes Scheduled.) Tj ET
+0.90 0.94 1 rg 42 386 27 26 re f
+BT /F2 12 Tf 0.14 0.33 0.65 rg 1 0 0 1 51 395 Tm (4) Tj ET
+BT /F2 13 Tf 0.07 0.12 0.20 rg 1 0 0 1 83 400 Tm (Complete work and submit proof  |  Technician) Tj ET
+BT /F1 11 Tf 0.28 0.35 0.45 rg 1 0 0 1 83 381 Tm (The technician views the job in Assigned Work and uploads two work-proof) Tj ET
+BT /F1 11 Tf 0.28 0.35 0.45 rg 1 0 0 1 83 366 Tm (images. The assignment moves to Payment Pending. Purchase details and bill) Tj ET
+BT /F1 11 Tf 0.28 0.35 0.45 rg 1 0 0 1 83 351 Tm (images can also be submitted.) Tj ET
+0.90 0.94 1 rg 42 302 27 26 re f
+BT /F2 12 Tf 0.14 0.33 0.65 rg 1 0 0 1 51 311 Tm (5) Tj ET
+BT /F2 13 Tf 0.07 0.12 0.20 rg 1 0 0 1 83 316 Tm (Record technician payment  |  Admin) Tj ET
+BT /F1 11 Tf 0.28 0.35 0.45 rg 1 0 0 1 83 297 Tm (The admin reviews payment details and records the payment reference. The) Tj ET
+BT /F1 11 Tf 0.28 0.35 0.45 rg 1 0 0 1 83 282 Tm (payment is marked Paid and the assignment is marked Completed.) Tj ET
+0.90 0.94 1 rg 42 233 27 26 re f
+BT /F2 12 Tf 0.14 0.33 0.65 rg 1 0 0 1 51 242 Tm (6) Tj ET
+BT /F2 13 Tf 0.07 0.12 0.20 rg 1 0 0 1 83 247 Tm (Review history and leave feedback  |  Customer) Tj ET
+BT /F1 11 Tf 0.28 0.35 0.45 rg 1 0 0 1 83 228 Tm (The customer can view completed work in Service History and submit feedback for) Tj ET
+BT /F1 11 Tf 0.28 0.35 0.45 rg 1 0 0 1 83 213 Tm (the technician.) Tj ET
+0.86 0.90 0.95 rg 42 52 511 1 re f
+BT /F1 9 Tf 0.28 0.35 0.45 rg 1 0 0 1 42 34 Tm (SAMS  /  Service & Appointment Management System) Tj ET
+BT /F1 9 Tf 0.28 0.35 0.45 rg 1 0 0 1 525 34 Tm (1 / 2) Tj ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 8 0 R >>
+endobj
+8 0 obj
+<< /Length 3719 >>
+stream
+0.07 0.12 0.20 rg 0 695 595 147 re f
+0.42 0.68 0.98 rg 42 726 36 3 re f
+BT /F2 10 Tf 0.66 0.80 1 rg 1 0 0 1 42 801 Tm (SAMS  /  TECHNICAL SUMMARY) Tj ET
+BT /F2 26 Tf 1 1 1 rg 1 0 0 1 42 764 Tm (Laravel components) Tj ET
+BT /F1 11 Tf 0.85 0.90 0.98 rg 1 0 0 1 42 742 Tm (How the application handles requests, data, and shared views) Tj ET
+BT /F2 12 Tf 0.14 0.33 0.65 rg 1 0 0 1 42 665 Tm (Routes) Tj ET
+BT /F1 11 Tf 0.28 0.35 0.45 rg 1 0 0 1 42 648 Tm (Named routes in routes/web.php connect URLs and HTTP methods to controller actions. Blade) Tj ET
+BT /F1 11 Tf 0.28 0.35 0.45 rg 1 0 0 1 42 633 Tm (forms, links, and redirects use these names.) Tj ET
+BT /F2 12 Tf 0.14 0.33 0.65 rg 1 0 0 1 42 607 Tm (Authentication and middleware) Tj ET
+BT /F1 11 Tf 0.28 0.35 0.45 rg 1 0 0 1 42 590 Tm (Auth::attempt\(\) checks credentials. The auth and custom role middleware restrict portal) Tj ET
+BT /F1 11 Tf 0.28 0.35 0.45 rg 1 0 0 1 42 575 Tm (access to signed-in users with the required role.) Tj ET
+BT /F2 12 Tf 0.14 0.33 0.65 rg 1 0 0 1 42 549 Tm (Controllers) Tj ET
+BT /F1 11 Tf 0.28 0.35 0.45 rg 1 0 0 1 42 532 Tm (Controllers validate input and coordinate service creation, customer requests, technician) Tj ET
+BT /F1 11 Tf 0.28 0.35 0.45 rg 1 0 0 1 42 517 Tm (assignments, proof uploads, and payment records.) Tj ET
+BT /F2 12 Tf 0.14 0.33 0.65 rg 1 0 0 1 42 491 Tm (Eloquent models and relationships) Tj ET
+BT /F1 11 Tf 0.28 0.35 0.45 rg 1 0 0 1 42 474 Tm (Models represent users, services, requests, assignments, payments, and feedback.) Tj ET
+BT /F1 11 Tf 0.28 0.35 0.45 rg 1 0 0 1 42 459 Tm (Relationships link each request to its customer and technician assignment.) Tj ET
+BT /F2 12 Tf 0.14 0.33 0.65 rg 1 0 0 1 42 433 Tm (Blade views and components) Tj ET
+BT /F1 11 Tf 0.28 0.35 0.45 rg 1 0 0 1 42 416 Tm (Role-specific layouts reuse the dashboard, portal topbar, and footer components. Blade) Tj ET
+BT /F1 11 Tf 0.28 0.35 0.45 rg 1 0 0 1 42 401 Tm (renders data passed from controllers.) Tj ET
+BT /F2 12 Tf 0.14 0.33 0.65 rg 1 0 0 1 42 375 Tm (Validation and CSRF protection) Tj ET
+BT /F1 11 Tf 0.28 0.35 0.45 rg 1 0 0 1 42 358 Tm (Server-side validation checks required fields, dates, catalog service IDs, and upload) Tj ET
+BT /F1 11 Tf 0.28 0.35 0.45 rg 1 0 0 1 42 343 Tm (rules. Blade forms use @csrf for protected submissions.) Tj ET
+BT /F2 12 Tf 0.14 0.33 0.65 rg 1 0 0 1 42 317 Tm (Migrations and seed data) Tj ET
+BT /F1 11 Tf 0.28 0.35 0.45 rg 1 0 0 1 42 300 Tm (Migrations define database tables and their relationships. The catalog migration adds the) Tj ET
+BT /F1 11 Tf 0.28 0.35 0.45 rg 1 0 0 1 42 285 Tm (six original services. DatabaseSeeder supplies initial application data.) Tj ET
+BT /F2 12 Tf 0.14 0.33 0.65 rg 1 0 0 1 42 259 Tm (File storage and mail) Tj ET
+BT /F1 11 Tf 0.28 0.35 0.45 rg 1 0 0 1 42 242 Tm (Laravel's public disk stores work-proof images. Laravel Mail sends an email when the admin) Tj ET
+BT /F1 11 Tf 0.28 0.35 0.45 rg 1 0 0 1 42 227 Tm (creates a technician account.) Tj ET
+0.91 0.95 1 rg 42 74 511 75 re f
+BT /F2 11 Tf 0.14 0.33 0.65 rg 1 0 0 1 54 130 Tm (Example  /  Submit a service request) Tj ET
+BT /F1 11 Tf 0.28 0.35 0.45 rg 1 0 0 1 54 112 Tm (The POST route calls ServicerequController::storeRequest\(\). The controller validates) Tj ET
+BT /F1 11 Tf 0.28 0.35 0.45 rg 1 0 0 1 54 97 Tm (the selected service, saves the request with the signed-in customer's ID through) Tj ET
+BT /F1 11 Tf 0.28 0.35 0.45 rg 1 0 0 1 54 82 Tm (Eloquent, and redirects to My Requests.) Tj ET
+0.86 0.90 0.95 rg 42 52 511 1 re f
+BT /F1 9 Tf 0.28 0.35 0.45 rg 1 0 0 1 42 34 Tm (SAMS  /  Service & Appointment Management System) Tj ET
+BT /F1 9 Tf 0.28 0.35 0.45 rg 1 0 0 1 525 34 Tm (2 / 2) Tj ET
+endstream
+endobj
+xref
+0 9
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000127 00000 n 
+0000000197 00000 n 
+0000000272 00000 n 
+0000000408 00000 n 
+0000003888 00000 n 
+0000004024 00000 n 
+trailer
+<< /Size 9 /Root 1 0 R >>
+startxref
+7795
+%%EOF

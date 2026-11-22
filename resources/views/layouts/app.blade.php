@@ -30,7 +30,7 @@
         </style>
         <link rel="stylesheet" href="{{ asset('sams.css') }}">
     </head>
-    <body class="sams bg-light">
+    <body class="sams bg-light d-flex flex-column min-vh-100">
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
 
     <div class="container">
@@ -137,7 +137,7 @@
 
 </nav>
 
-        <main>
+        <main class="flex-grow-1">
             @yield('content')
         </main>
 
